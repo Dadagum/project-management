@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
+<mapper namespace="com.dadagum.team.mapper.TestMapper">
+
+    <select id="getAll" resultType="Integer">
+        SELECT * FROM test
+    </select>
+
+</mapper>

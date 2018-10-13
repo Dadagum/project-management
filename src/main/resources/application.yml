@@ -1,0 +1,36 @@
+spring:
+  servlet:
+  # 文件上传
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
+# 数据库配置
+app:
+  datasource:
+    url: jdbc:mysql://localhost:3306/team?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: lianghongda
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 1
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    poolPreparedStatements : false
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat
+    maxPoolPreparedStatementPerConnectionSize: 20
+
+# mybatis配置
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.dadagum.team.bean
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
