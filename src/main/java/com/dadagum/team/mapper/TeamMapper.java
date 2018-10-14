@@ -1,6 +1,6 @@
 package com.dadagum.team.mapper;
 
-import com.dadagum.team.bean.Team;
+import com.dadagum.team.common.bean.Team;
 
 public interface TeamMapper {
 

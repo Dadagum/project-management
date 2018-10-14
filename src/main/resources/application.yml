@@ -31,6 +31,6 @@ app:
 # mybatis配置
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml
-  type-aliases-package: com.dadagum.team.bean
+  type-aliases-package: com.dadagum.team.common.bean
   mapper-locations:
   - classpath:mybatis/mapper/**/*.xml

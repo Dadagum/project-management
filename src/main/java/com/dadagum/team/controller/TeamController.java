@@ -1,6 +1,6 @@
 package com.dadagum.team.controller;
 
-import com.dadagum.team.bean.Team;
+import com.dadagum.team.common.bean.Team;
 import com.dadagum.team.common.api.JsonResult;
 import com.dadagum.team.common.constant.JsonCode;
 import com.dadagum.team.service.TeamService;

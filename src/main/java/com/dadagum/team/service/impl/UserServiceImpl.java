@@ -1,6 +1,6 @@
 package com.dadagum.team.service.impl;
 
-import com.dadagum.team.bean.User;
+import com.dadagum.team.common.bean.User;
 import com.dadagum.team.mapper.UserMapper;
 import com.dadagum.team.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

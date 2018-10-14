@@ -2,6 +2,7 @@ package com.dadagum.team.controller;
 
 import com.dadagum.team.common.api.JsonResult;
 import com.dadagum.team.common.constant.JsonCode;
+import com.dadagum.team.common.validator.ImageValidator;
 import com.dadagum.team.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -22,16 +23,16 @@ public class FileController {
     @PostMapping("/file")
     @ResponseBody
     public JsonResult<?> upload(@RequestParam("file") MultipartFile file){
-        if (!file.isEmpty()){
+        if (ImageValidator.getValidator(file).checkAll()){
             fileService.upload(file);
             return new JsonResult<>(null, "上传成功", JsonCode.SUCCESS);
         }
         return new JsonResult<>(null, "上传失败", JsonCode.FAIL);
     }
 
-    @GetMapping("/file")
-    public ResponseEntity<FileSystemResource> download(){
-        String path = "D:/testing/file/7c7dda2a18b442c9922a550dab961c43.jpg";
-        return fileService.download(path);
-    }
+//    @GetMapping("/file")
+//    public ResponseEntity<FileSystemResource> download(){
+//        String path = "/var/www/picture";
+//        return fileService.download(path);
+//    }
 }

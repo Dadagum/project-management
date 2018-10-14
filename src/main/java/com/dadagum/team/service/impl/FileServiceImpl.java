@@ -12,7 +12,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public boolean upload(MultipartFile file) {
-        String path = "D:/testing/file";
+        String path = "/var/www/picture";
         return FileUtil.upload(file, path, file.getOriginalFilename());
     }
 

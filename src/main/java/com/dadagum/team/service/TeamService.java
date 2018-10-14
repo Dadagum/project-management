@@ -1,6 +1,6 @@
 package com.dadagum.team.service;
 
-import com.dadagum.team.bean.Team;
+import com.dadagum.team.common.bean.Team;
 
 public interface TeamService {
 

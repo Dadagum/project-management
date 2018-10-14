@@ -1,6 +1,6 @@
 package com.dadagum.team.mapper;
 
-import com.dadagum.team.bean.User;
+import com.dadagum.team.common.bean.User;
 
 public interface UserMapper {
 

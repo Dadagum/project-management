@@ -1,6 +1,6 @@
 package com.dadagum.team.service.impl;
 
-import com.dadagum.team.bean.Team;
+import com.dadagum.team.common.bean.Team;
 import com.dadagum.team.mapper.TeamMapper;
 import com.dadagum.team.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
