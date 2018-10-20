@@ -5,7 +5,6 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
-
 # 数据库配置
 app:
   datasource:
@@ -34,3 +33,15 @@ mybatis:
   type-aliases-package: com.dadagum.team.common.bean
   mapper-locations:
   - classpath:mybatis/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# servlet配置
+server:
+  servlet:
+    context-path: /api
+
+# 日志记录
+logging:
+  file: "D:/testing/java/team.log"
+  level: info

@@ -4,11 +4,18 @@ import com.dadagum.team.common.bean.User;
 
 public interface UserMapper {
 
-    public void insert(User user);
+    public void addUser(User user);
 
-    public void deleteById(int id);
+    public void deleteUserById(int id);
 
-    public User selectById(int id);
+    public User getUserById(int id);
 
-    public void update(User user);
+    public void updateUser(User user);
+
+    public int ifUserExist(String phone);
+
+    public String getSalt(int id);
+
+    public int userAuth(User user);
+
 }

@@ -3,6 +3,7 @@ package com.dadagum.team.controller;
 import com.dadagum.team.common.bean.Team;
 import com.dadagum.team.common.api.JsonResult;
 import com.dadagum.team.common.constant.JsonCode;
+import com.dadagum.team.common.exception.def.NotAnImageException;
 import com.dadagum.team.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,5 +37,15 @@ public class TeamController {
     public JsonResult<?> update(Team team){
         teamService.update(team);
         return new JsonResult<>(team, "更新团队信息成功", JsonCode.SUCCESS);
+    }
+
+    @ExceptionHandler
+    public JsonResult<?> handleRuntimeException(RuntimeException ex){
+        return new JsonResult<>(null, "系统错误 : " + ex.getMessage(), 1);
+    }
+
+    @GetMapping("/ex")
+    public String testThrowException(){
+        throw new NotAnImageException();
     }
 }

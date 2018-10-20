@@ -4,11 +4,13 @@ import com.dadagum.team.common.bean.User;
 
 public interface UserService {
 
-    public void add(User User);
+    public void addUser(User User);
 
-    public void delete(int id);
+    public void deleteUser(int id);
 
-    public User get(int id);
+    public User getUser(int id);
 
-    public void update(User User);
+    public void updateUser(User User);
+
+    public String login(User user);
 }

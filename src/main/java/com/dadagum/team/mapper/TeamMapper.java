@@ -11,4 +11,5 @@ public interface TeamMapper {
     public Team selectById(int id);
 
     public void update(Team team);
+
 }
