@@ -2,12 +2,13 @@ package com.dadagum.team.common.bean;
 
 import java.util.Date;
 
-public class Team {
+public class Project {
 
     private Integer id;
     private String name;
-    private Integer uid;
+    private String description;
     private Date createTime;
+    private Integer gid;
 
     public Integer getId() {
         return id;
@@ -25,12 +26,12 @@ public class Team {
         this.name = name;
     }
 
-    public Integer getUid() {
-        return uid;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getCreateTime() {
@@ -39,5 +40,13 @@ public class Team {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getGid() {
+        return gid;
+    }
+
+    public void setGid(Integer gid) {
+        this.gid = gid;
     }
 }

@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 public class UserController {
 
@@ -24,9 +27,12 @@ public class UserController {
     }
 
     @PostMapping("/authentication")
-    public JsonResult<?> login(User user){
+    public JsonResult<?> login(User user, ServletResponse servletResponse){
         if (UserValidator.checkForLogin(user)){
-
+            String jwt = userService.login(user);
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.addHeader("Authorization", jwt);
+            return new JsonResult<>(null, "登陆成功", JsonCode.SUCCESS);
         }
         return new JsonResult<>(null, "认证失败", JsonCode.FAIL);
     }

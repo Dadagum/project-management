@@ -4,6 +4,8 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  redis:
+    host: 119.29.82.146
 
 # 数据库配置
 app:

@@ -18,4 +18,7 @@ public interface UserMapper {
 
     public int userAuth(User user);
 
+    public String getUserRole(int id);
+
+
 }
