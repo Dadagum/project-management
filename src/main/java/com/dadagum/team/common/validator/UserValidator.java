@@ -7,7 +7,7 @@ public class UserValidator {
     private UserValidator(){
     }
 
-    public static boolean checkForRegsigration(User user){
+    public static boolean checkForRegistration(User user){
         return true;
     }
 

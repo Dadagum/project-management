@@ -59,7 +59,7 @@ public class RedisUtil {
      * @param key
      */
     @SuppressWarnings("unchecked")
-    public void deleteK(String ... key){
+    public void deleteKey(String ... key){
         if (key == null || "".equals(key)) return;
         if (key.length == 1) {
             redisTemplate.delete(key[0]);

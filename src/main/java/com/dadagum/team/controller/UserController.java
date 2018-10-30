@@ -20,7 +20,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public JsonResult<?> register(User user){
-        if (UserValidator.checkForRegsigration(user)){
+        if (UserValidator.checkForRegistration(user)){
             userService.addUser(user);
         }
         return new JsonResult<>(null, "注册失败", JsonCode.FAIL);

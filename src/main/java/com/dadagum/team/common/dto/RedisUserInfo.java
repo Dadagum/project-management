@@ -7,8 +7,7 @@ public class RedisUserInfo {
 
     private Map<Integer, List<Integer>> project;
     private Map<Integer, List<Integer>> task;
-
-
+    
     public RedisUserInfo() {
     }
 
