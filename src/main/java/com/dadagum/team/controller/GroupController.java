@@ -2,50 +2,67 @@ package com.dadagum.team.controller;
 
 import com.dadagum.team.common.bean.Group;
 import com.dadagum.team.common.api.JsonResult;
-import com.dadagum.team.common.constant.JsonCode;
-import com.dadagum.team.common.exception.def.NotAnImageException;
+import com.dadagum.team.common.bean.Role;
+import com.dadagum.team.common.bean.User;
 import com.dadagum.team.service.GroupService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
+
 @RestController
-@RequestMapping("/team")
+@RequestMapping("/groups")
 public class GroupController {
 
     @Autowired
     private GroupService groupService;
 
-    @PostMapping("/")
-    public JsonResult<?> add(Group group){
-        groupService.add(group);
-        return new JsonResult<>(group, "增加团队成功", JsonCode.SUCCESS);
+    @PostMapping
+    public ResponseEntity<JsonResult<?>> add(Group group){
+        // groupService.add(group);
+        group.setId(10000);
+        return new ResponseEntity<>(new JsonResult<>(group, "增加团队成功"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/")
-    public JsonResult<?> delete(int id){
-        groupService.delete(id);
-        return new JsonResult<>(null, "删除团队成功", JsonCode.SUCCESS);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<JsonResult<?>> delete(@PathVariable int id){
+        // groupService.delete(id);
+        return new ResponseEntity<>(new JsonResult<>(null, "删除团队成功"), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public JsonResult<?> get(@PathVariable int id){
-        Group result = groupService.get(id);
-        return new JsonResult<>(result, "得到团队信息成功", JsonCode.SUCCESS);
+    public ResponseEntity<JsonResult<?>> get(@PathVariable int id){
+        //Group result = groupService.get(id);
+        Group result = new Group(10000, "朱世靖小分队", 10000, new Date());
+        return new ResponseEntity<>(new JsonResult<>(result, "得到团队信息成功"), HttpStatus.OK);
     }
 
-    @PutMapping("/")
-    public JsonResult<?> update(Group group){
-        groupService.update(group);
-        return new JsonResult<>(group, "更新团队信息成功", JsonCode.SUCCESS);
+    @PutMapping("/{id}")
+    public ResponseEntity<JsonResult<?>> update(Group group, @PathVariable int id){
+        // groupService.update(group);
+        group.setId(10000);
+        return new ResponseEntity<>(new JsonResult<>(group, "更新团队信息成功"), HttpStatus.OK);
     }
 
-    @ExceptionHandler
-    public JsonResult<?> handleRuntimeException(RuntimeException ex){
-        return new JsonResult<>(null, "系统错误 : " + ex.getMessage(), 1);
+    @PostMapping("/{id}/users")
+    @JsonView(User.PublicUserInfo.class)
+    public ResponseEntity<JsonResult<?>> addTeamMate(@PathVariable int id, User user) {
+        return new ResponseEntity<>(new JsonResult<>(user, "添加成员成功"), HttpStatus.OK);
     }
 
-    @GetMapping("/ex")
-    public String testThrowException(){
-        throw new NotAnImageException();
+    @DeleteMapping("/{gid}/users/{uid}")
+    public ResponseEntity<JsonResult<?>> deleteTeamMate(@PathVariable int gid, @PathVariable int uid){
+        return new ResponseEntity<>(new JsonResult<>(null, "踢出成员成功"), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/users")
+    public ResponseEntity<JsonResult<?>> getTeamMates(@PathVariable int id) {
+        List<User> list = new ArrayList<>();
+        list.add(new User("朱世靖", Role.USER.value()));
+        list.add(new User("朱世靖爸爸", Role.USER.value()));
+        return new ResponseEntity<>(new JsonResult<>(list, "成功获得队友列表"), HttpStatus.OK);
     }
 }

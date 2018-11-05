@@ -9,6 +9,16 @@ public class Group {
     private Integer uid;
     private Date createTime;
 
+    public Group(Integer id, String name, Integer uid, Date createTime) {
+        this.id = id;
+        this.name = name;
+        this.uid = uid;
+        this.createTime = createTime;
+    }
+
+    public Group() {
+    }
+
     public Integer getId() {
         return id;
     }

@@ -6,12 +6,9 @@ public class JsonResult<T> {
 
     private String message;
 
-    private Integer code;
-
-    public JsonResult(T data, String message, Integer code) {
+    public JsonResult(T data, String message) {
         this.data = data;
         this.message = message;
-        this.code = code;
     }
 
     public JsonResult() {
@@ -33,11 +30,4 @@ public class JsonResult<T> {
         this.message = message;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 }

@@ -1,10 +1,22 @@
 package com.dadagum.team.common.bean;
 
-public class Role {
+public enum Role {
+
+    USER(1, "user"),
+    ADMIN(2, "admin"),
+    ROOT(3, "root");
 
     private Integer id;
-
     private String name;
+
+    private Role(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String value() {
+        return this.name;
+    }
 
     public Integer getId() {
         return id;

@@ -37,8 +37,6 @@ mybatis:
   type-aliases-package: com.dadagum.team.common.bean
   mapper-locations:
   - classpath:mybatis/mapper/**/*.xml
-  configuration:
-    map-underscore-to-camel-case: true
 
 # servlet配置
 server:
@@ -48,4 +46,5 @@ server:
 # 日志记录
 logging:
   file: "D:/testing/java/team.log"
-  level: info
+  level:
+    root: INFO
