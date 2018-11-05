@@ -7,8 +7,10 @@ public class Project {
     private Integer id;
     private String name;
     private String description;
-    private Date createTime;
+    private Date startTime;
+    private Date endTime;
     private Integer gid;
+    private Integer uid;
 
     public Integer getId() {
         return id;
@@ -34,12 +36,20 @@ public class Project {
         this.description = description;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Integer getGid() {
@@ -48,5 +58,13 @@ public class Project {
 
     public void setGid(Integer gid) {
         this.gid = gid;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 }

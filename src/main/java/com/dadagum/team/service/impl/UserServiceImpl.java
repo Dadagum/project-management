@@ -5,16 +5,12 @@ import com.dadagum.team.common.dto.JwtUserInfo;
 import com.dadagum.team.common.exception.def.UserAuthenticationException;
 import com.dadagum.team.common.utils.DigestUtil;
 import com.dadagum.team.common.utils.JWTUtils;
+import com.dadagum.team.mapper.GroupMapper;
 import com.dadagum.team.mapper.ProjectMapper;
-import com.dadagum.team.mapper.TeamMapper;
 import com.dadagum.team.mapper.UserMapper;
 import com.dadagum.team.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Autowired
-    private TeamMapper teamMapper;
+    private GroupMapper groupMapper;
 
     @Autowired
     private ProjectMapper projectMapper;
@@ -93,7 +89,7 @@ public class UserServiceImpl implements UserService {
     }
 
 //    private Map<Integer, List<Integer>> getUserProject(int uid, List<Integer> projects){
-//        List<Integer> teams = teamMapper.getUserTeams(uid);
+//        List<Integer> teams = groupMapper.getUserTeams(uid);
 //        for (Integer teamId : teams){
 //
 //        }

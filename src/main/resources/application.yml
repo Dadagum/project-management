@@ -6,6 +6,8 @@ spring:
       max-request-size: 10MB
   redis:
     host: 119.29.82.146
+    port: 6379
+    password: lianghongda123
 
 # 数据库配置
 app:

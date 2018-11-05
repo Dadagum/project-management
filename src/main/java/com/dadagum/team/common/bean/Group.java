@@ -2,7 +2,7 @@ package com.dadagum.team.common.bean;
 
 import java.util.Date;
 
-public class Team {
+public class Group {
 
     private Integer id;
     private String name;

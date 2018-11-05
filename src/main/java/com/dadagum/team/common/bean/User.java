@@ -1,13 +1,16 @@
 package com.dadagum.team.common.bean;
 
+import java.util.Date;
+
 public class User {
 
     private Integer id;
     private String userName;
     private String password;
     private String phone;
-    private String role;
+    private String rid;
     private String salt;
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -41,16 +44,24 @@ public class User {
         this.phone = phone;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getSalt() {
         return salt;
+    }
+
+    public String getRid() {
+        return rid;
+    }
+
+    public void setRid(String rid) {
+        this.rid = rid;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public void setSalt(String salt) {
