@@ -1,12 +1,23 @@
 package com.dadagum.team.common.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
+@ApiModel(value="Group",description="团队")
 public class Group {
 
+    @ApiModelProperty(value="团队id",name="id")
     private Integer id;
+
+    @ApiModelProperty(value="团队名称(长度 1-20)",name="name")
     private String name;
+
+    @ApiModelProperty(value="团队队长id",name="uid")
     private Integer uid;
+
+    @ApiModelProperty(value="团队创建时间(yyyy-MM-dd HH:mm:ss)",name="createTime")
     private Date createTime;
 
     public Group(Integer id, String name, Integer uid, Date createTime) {

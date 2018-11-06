@@ -1,19 +1,29 @@
 package com.dadagum.team.common.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
+@ApiModel(value="Mission",description="团队任务")
 public class Mission {
 
+    @ApiModelProperty(value="任务id",name="id")
     private Integer id;
 
+    @ApiModelProperty(value="团队项目id",name="pid")
     private Integer pid;
 
+    @ApiModelProperty(value="任务名称(长度 1-20)",name="name")
     private String name;
 
+    @ApiModelProperty(value="任务描述(200字以内)",name="details")
     private String details;
 
+    @ApiModelProperty(value="任务开始时间(yyyy-MM-dd)",name="startTime")
     private Date startTime;
 
+    @ApiModelProperty(value="任务结束时间(yyyy-MM-dd)",name="endTime")
     private Date endTime;
 
     public Integer getId() {
@@ -63,4 +73,5 @@ public class Mission {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
+
 }

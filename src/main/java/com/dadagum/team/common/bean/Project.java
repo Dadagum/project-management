@@ -1,16 +1,33 @@
 package com.dadagum.team.common.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
+@ApiModel(value="Project",description="团队项目")
 public class Project {
 
+    @ApiModelProperty(value="团队项目id",name="id")
     private Integer id;
+
+    @ApiModelProperty(value="项目名称(长度 1-20)",name="name")
     private String name;
+
+    @ApiModelProperty(value="项目描述(200字内)",name="name")
     private String description;
+
+    @ApiModelProperty(value="项目开始时间(yyyy-MM-dd)",name="startTime")
     private Date startTime;
+
+    @ApiModelProperty(value="项目结束时间(yyyy-MM-dd)",name="startTime")
     private Date endTime;
+
+    @ApiModelProperty(value="团队id",name="gid")
     private Integer gid;
-    private Integer uid;
+
+    @ApiModelProperty(value="项目完成情况",name="finish")
+    private boolean finish;
 
     public Integer getId() {
         return id;
@@ -60,11 +77,11 @@ public class Project {
         this.gid = gid;
     }
 
-    public Integer getUid() {
-        return uid;
+    public boolean isFinish() {
+        return finish;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setFinish(boolean finish) {
+        this.finish = finish;
     }
 }

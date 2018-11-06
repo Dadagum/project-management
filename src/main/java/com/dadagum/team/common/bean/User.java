@@ -1,20 +1,40 @@
 package com.dadagum.team.common.bean;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
+@ApiModel(value="User",description="用户")
 public class User {
 
+    @ApiModelProperty(value="用户id",name="id")
     private Integer id;
+
+    @ApiModelProperty(value="用户名称(长度 1-20)",name="userName")
     private String userName;
+
+    @ApiModelProperty(value="用户密码(长度 5-30)",name="password")
     private String password;
+
+    @ApiModelProperty(value="用户手机",name="phone")
     private String phone;
+
+    @ApiModelProperty(value="用户在系统中扮演角色",name="role")
     private String role;
+
     private String salt;
     private Date createTime;
 
+    /**
+     * + phone
+     */
     public interface PersonalUserInfo extends PublicUserInfo{}
+
+    /**
+     * id, userName, role
+     */
     public interface PublicUserInfo {}
 
     public User(String userName, String role) {
