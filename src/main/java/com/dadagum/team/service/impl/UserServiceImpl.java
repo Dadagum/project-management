@@ -1,10 +1,12 @@
 package com.dadagum.team.service.impl;
 
+import com.dadagum.team.common.bean.Role;
 import com.dadagum.team.common.bean.User;
-import com.dadagum.team.common.dto.JwtUserInfo;
+import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.common.exception.def.UserAuthenticationException;
 import com.dadagum.team.common.utils.DigestUtil;
 import com.dadagum.team.common.utils.JWTUtils;
+import com.dadagum.team.common.validator.UserValidator;
 import com.dadagum.team.mapper.GroupMapper;
 import com.dadagum.team.mapper.ProjectMapper;
 import com.dadagum.team.mapper.UserMapper;
@@ -28,18 +30,16 @@ public class UserServiceImpl implements UserService {
     private static final int JWT_AGE = 3600000;
 
     @Override
-    public void addUser(User user) {
-        if (ifUserExist(user)){
-            throw new UserAuthenticationException("手机已经被注册");
+    public void insertUser(User user) {
+        if (UserValidator.checkForRegistration(user)) {
+            String salt = DigestUtil.createSalt();
+            user.setSalt(salt);
+
+            String encodedPwd = DigestUtil.md5Hash(user.getPassword(), salt);
+            user.setPassword(encodedPwd);
+
+            userMapper.insertUser(user);
         }
-
-        String salt = DigestUtil.createSalt();
-        user.setSalt(salt);
-
-        String encodedPwd = DigestUtil.md5Hash(user.getPassword(), salt);
-        user.setPassword(encodedPwd);
-
-        userMapper.addUser(user);
     }
 
     @Override
@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(int id) {
-        return userMapper.getUserById(id);
+        // userMapper.getUserById(id);
+        return new User("朱世靖", Role.USER.value());
     }
 
     @Override
@@ -74,22 +75,22 @@ public class UserServiceImpl implements UserService {
 
         // 生成jwt
         String role = userMapper.getUserRole(user.getId());
-        JwtUserInfo jwtUserInfo = new JwtUserInfo(user.getId(), role);
-        String jwt = JWTUtils.createToken(jwtUserInfo, JWT_AGE);
+        JwtUserDTO jwtUserDTO = new JwtUserDTO(user.getId(), role);
+        String jwt = JWTUtils.createToken(jwtUserDTO, JWT_AGE);
 
         return jwt;
     }
 
     private boolean ifUserExist(User user){
-        return userMapper.ifUserExist(user.getPhone()) == 1;
+        return userMapper.countUserPhone(user.getPhone()) == 1;
     }
 
     private boolean checkPassword(User user){
-        return userMapper.userAuth(user) == 1;
+        return userMapper.countUserByNameAndPassword(user) == 1;
     }
 
 //    private Map<Integer, List<Integer>> getUserProject(int uid, List<Integer> projects){
-//        List<Integer> teams = groupMapper.getUserTeams(uid);
+//        List<Integer> teams = groupMapper.listUserGroup(uid);
 //        for (Integer teamId : teams){
 //
 //        }

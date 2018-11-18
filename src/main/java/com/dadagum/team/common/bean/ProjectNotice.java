@@ -10,9 +10,12 @@ public class ProjectNotice {
 
     private Integer uid;
 
+    private String name;
+
     private String details;
 
     private Date createTime;
+
 
     public Integer getId() {
         return id;

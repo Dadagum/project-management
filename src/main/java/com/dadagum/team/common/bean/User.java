@@ -25,6 +25,7 @@ public class User {
     private String role;
 
     private String salt;
+
     private Date createTime;
 
     /**

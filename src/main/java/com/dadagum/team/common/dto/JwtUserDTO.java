@@ -1,16 +1,16 @@
 package com.dadagum.team.common.dto;
 
-public class JwtUserInfo {
+public class JwtUserDTO {
 
     private Integer id;
     private String role;
 
-    public JwtUserInfo(Integer id, String role) {
+    public JwtUserDTO(Integer id, String role) {
         this.id = id;
         this.role = role;
     }
 
-    public JwtUserInfo() {
+    public JwtUserDTO() {
     }
 
     public Integer getId() {

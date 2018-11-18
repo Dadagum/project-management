@@ -1,19 +1,25 @@
 package com.dadagum.team.mapper;
 
 import com.dadagum.team.common.bean.Group;
+import com.dadagum.team.common.bean.User;
 
 import java.util.List;
 
 public interface GroupMapper {
 
-    public void insert(Group group);
+    void insertGroup(Group group);
 
-    public void deleteById(int id);
+    void deleteById(int gid);
 
-    public Group selectById(int id);
+    Group getGroupById(int gid);
 
-    public void update(Group group);
+    void updateGroup(Group group);
 
-    public List<Integer> getUserTeams(int uid);
+    List<Integer> listUserGroup(int uid);
 
+    void insertUser2Group(int gid, int uid);
+
+    void deleteUserFromGroup(int gid, int uid);
+
+    List<User> listUserTeammate(int gid, int uid);
 }
