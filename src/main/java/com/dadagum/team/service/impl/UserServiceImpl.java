@@ -1,7 +1,7 @@
 package com.dadagum.team.service.impl;
 
-import com.dadagum.team.common.bean.Role;
-import com.dadagum.team.common.bean.User;
+import com.dadagum.team.common.model.Role;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.common.exception.def.UserAuthenticationException;
 import com.dadagum.team.common.utils.DigestUtil;

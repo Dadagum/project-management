@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 貌似会有线程安全问题，暂时先不管
+ */
 public class ImageValidator {
 
     private static Set<String> validSuffixs = new HashSet<>();

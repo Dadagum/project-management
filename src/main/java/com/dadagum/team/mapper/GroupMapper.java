@@ -1,7 +1,7 @@
 package com.dadagum.team.mapper;
 
-import com.dadagum.team.common.bean.Group;
-import com.dadagum.team.common.bean.User;
+import com.dadagum.team.common.model.Group;
+import com.dadagum.team.common.model.User;
 
 import java.util.List;
 
@@ -13,6 +13,8 @@ public interface GroupMapper {
 
     Group getGroupById(int gid);
 
+    Integer getLeaderIdByUidGid(int uid, int gid);
+
     void updateGroup(Group group);
 
     List<Integer> listUserGroup(int uid);
@@ -22,4 +24,5 @@ public interface GroupMapper {
     void deleteUserFromGroup(int gid, int uid);
 
     List<User> listUserTeammate(int gid, int uid);
+
 }

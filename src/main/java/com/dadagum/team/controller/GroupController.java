@@ -1,9 +1,9 @@
 package com.dadagum.team.controller;
 
-import com.dadagum.team.common.bean.Group;
+import com.dadagum.team.common.model.Group;
 import com.dadagum.team.common.api.JsonResult;
-import com.dadagum.team.common.bean.Role;
-import com.dadagum.team.common.bean.User;
+import com.dadagum.team.common.model.Role;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.service.GroupService;
 import com.fasterxml.jackson.annotation.JsonView;

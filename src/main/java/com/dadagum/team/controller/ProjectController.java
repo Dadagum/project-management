@@ -1,14 +1,13 @@
 package com.dadagum.team.controller;
 
 import com.dadagum.team.common.api.JsonResult;
-import com.dadagum.team.common.bean.Project;
+import com.dadagum.team.common.model.Project;
 import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.common.query.ProjectQuery;
 import com.dadagum.team.service.ProjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,7 +76,7 @@ public class ProjectController {
     public ResponseEntity<JsonResult<?>> deleteUserFromProject(@PathVariable int pid, @RequestBody Map<String, List<Integer>> map, @RequestAttribute JwtUserDTO userInfo) {
         List<Integer> users = map.get("users");
         projectService.deleteUserFromProject(userInfo, users, pid);
-        return new ResponseEntity<>(new JsonResult<>(null, "删除成员成功"), HttpStatus.OK);
+        return ResponseEntity.ok().body(new JsonResult<>(null, "删除成员成功"));
     }
 
 

@@ -1,7 +1,8 @@
 package com.dadagum.team.service.impl;
 
-import com.dadagum.team.common.bean.Group;
-import com.dadagum.team.common.bean.User;
+import com.dadagum.team.common.constant.GroupRoleEnum;
+import com.dadagum.team.common.model.Group;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.mapper.GroupMapper;
 import com.dadagum.team.service.GroupService;
@@ -68,6 +69,12 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<User> listUserTeammate(JwtUserDTO userInfo, int gid) {
         return groupMapper.listUserTeammate(gid, userInfo.getId());
+    }
+
+    @Override
+    public GroupRoleEnum getUserGroupRole(int uid, int gid) {
+        groupMapper.getLeaderIdByUidGid(uid, gid);
+        return null;
     }
 
 

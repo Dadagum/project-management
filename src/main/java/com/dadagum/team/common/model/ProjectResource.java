@@ -1,4 +1,4 @@
-package com.dadagum.team.common.bean;
+package com.dadagum.team.common.model;
 
 public class ProjectResource {
 

@@ -1,6 +1,6 @@
 package com.dadagum.team.mapper;
 
-import com.dadagum.team.common.bean.Project;
+import com.dadagum.team.common.model.Project;
 import com.dadagum.team.common.query.ProjectQuery;
 import org.apache.ibatis.annotations.Param;
 

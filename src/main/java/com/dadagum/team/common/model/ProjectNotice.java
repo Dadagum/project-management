@@ -1,18 +1,21 @@
-package com.dadagum.team.common.bean;
+package com.dadagum.team.common.model;
 
 import java.util.Date;
 
-public class ProjectFile {
+public class ProjectNotice {
 
     private Integer id;
 
     private Integer pid;
 
-    private String path;
+    private Integer uid;
 
     private String name;
 
+    private String details;
+
     private Date createTime;
+
 
     public Integer getId() {
         return id;
@@ -30,20 +33,20 @@ public class ProjectFile {
         this.pid = pid;
     }
 
-    public String getPath() {
-        return path;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public String getDetails() {
+        return details;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public Date getCreateTime() {

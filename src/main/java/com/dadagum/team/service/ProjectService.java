@@ -1,6 +1,6 @@
 package com.dadagum.team.service;
 
-import com.dadagum.team.common.bean.Project;
+import com.dadagum.team.common.model.Project;
 import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.common.query.ProjectQuery;
 

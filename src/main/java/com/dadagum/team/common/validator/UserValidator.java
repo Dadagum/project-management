@@ -1,6 +1,6 @@
 package com.dadagum.team.common.validator;
 
-import com.dadagum.team.common.bean.User;
+import com.dadagum.team.common.model.User;
 
 public class UserValidator {
 
