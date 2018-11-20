@@ -25,4 +25,9 @@ public interface GroupMapper {
 
     List<User> listUserTeammate(int gid, int uid);
 
+    int getGidByPid(int pid);
+
+    int getGidByMid(int mid);
+
+
 }

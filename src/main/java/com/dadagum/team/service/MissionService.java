@@ -8,13 +8,18 @@ import java.util.List;
 
 public interface MissionService {
 
-    void insertProject(JwtUserDTO userInfo, Mission mission);
+    void insertMission(JwtUserDTO userInfo, Mission mission);
 
-    void deleteProject(JwtUserDTO userInfo, int mid);
+    void deleteMission(JwtUserDTO userInfo, int mid);
 
     Mission getMission(JwtUserDTO userInfo, int mid);
 
     List<Mission> listUserMission(JwtUserDTO userInfo, MissionQuery query);
 
-    void updateProject(JwtUserDTO userInfo, Mission mission);
+    void updateMission(JwtUserDTO userInfo, Mission mission);
+
+    void assignUserMission(JwtUserDTO userInfo, List<Integer> users, int mid);
+
+    void deleteUserMission(JwtUserDTO userInfo, List<Integer> users, int mid);
+
 }

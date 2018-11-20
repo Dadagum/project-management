@@ -28,8 +28,8 @@ public class FileController {
         return ResponseEntity.ok(new JsonResult<>(null, "上传成功"));
     }
 
-    @GetMapping("/file/{fid}")
+    @GetMapping("/file/{pid}/{fid}")
     public ResponseEntity<FileSystemResource> download(@RequestAttribute JwtUserDTO userInfo, @PathVariable int pid, @PathVariable int fid){
-        return fileService.download(userInfo,fid);
+        return fileService.download(userInfo,fid, pid);
     }
 }

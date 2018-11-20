@@ -10,5 +10,5 @@ public interface FileService {
 
     public boolean upload(MultipartFile file, JwtUserDTO userInfo, ProjectFile fileInfo);
 
-    public ResponseEntity<FileSystemResource> download(JwtUserDTO userInfo, int fid);
+    public ResponseEntity<FileSystemResource> download(JwtUserDTO userInfo, int fid, int pid);
 }

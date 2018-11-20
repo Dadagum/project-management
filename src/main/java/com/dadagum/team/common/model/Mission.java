@@ -11,6 +11,8 @@ public class Mission {
     @ApiModelProperty(value="任务id",name="id")
     private Integer id;
 
+    private Integer gid;
+
     @ApiModelProperty(value="团队项目id",name="pid")
     private Integer pid;
 
@@ -74,4 +76,11 @@ public class Mission {
         this.endTime = endTime;
     }
 
+    public Integer getGid() {
+        return gid;
+    }
+
+    public void setGid(Integer gid) {
+        this.gid = gid;
+    }
 }

@@ -17,4 +17,8 @@ public interface MissionMapper {
     List<Mission> listUserMission(@Param("uid") int uid, @Param("query") MissionQuery query);
 
     void updateMission(Mission mission);
+
+    void insertUsersMission(@Param("users") List<Integer> users, @Param("mid") int mid);
+
+    void deleteUserFromMission(@Param("users") List<Integer> users, @Param("mid") int mid);
 }

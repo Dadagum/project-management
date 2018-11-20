@@ -1,6 +1,5 @@
 package com.dadagum.team.service;
 
-import com.dadagum.team.common.constant.GroupRoleEnum;
 import com.dadagum.team.common.model.Group;
 import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.dto.JwtUserDTO;
@@ -25,6 +24,9 @@ public interface GroupService {
 
     List<User> listUserTeammate(JwtUserDTO userInfo, int gid);
 
-    GroupRoleEnum getUserGroupRole(int uid, int gid);
+    int getGidByPid(int pid);
+
+    int getGidByMid(int mid);
+
 
 }
