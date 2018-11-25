@@ -68,13 +68,15 @@ public class MissionController {
     @PostMapping("/{mid}/users")
     public ResponseEntity<JsonResult<?>> assignUserMission(@PathVariable int mid, @RequestBody Map<String, List<Integer>> map, @RequestAttribute JwtUserDTO userInfo){
         List<Integer> users = map.get("users");
-
+        missionService.assignUserMission(userInfo, users, mid);
+        return ResponseEntity.ok(new JsonResult<>(null, "分配任务成功"));
     }
 
     @DeleteMapping("/{mid}/users")
-    public ResponseEntity<JsonResult<?>> assignUserMission(@PathVariable int mid, @RequestBody Map<String, List<Integer>> map, @RequestAttribute JwtUserDTO userInfo){
+    public ResponseEntity<JsonResult<?>> deleteUserMission(@PathVariable int mid, @RequestBody Map<String, List<Integer>> map, @RequestAttribute JwtUserDTO userInfo){
         List<Integer> users = map.get("users");
-
+        missionService.deleteUserMission(userInfo, users, mid);
+        return ResponseEntity.ok(new JsonResult<>(null, "删除用户分配任务"));
     }
 
 }
