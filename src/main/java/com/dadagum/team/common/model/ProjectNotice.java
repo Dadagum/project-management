@@ -10,7 +10,7 @@ public class ProjectNotice {
 
     private Integer uid;
 
-    private String name;
+    private String title;
 
     private String details;
 
@@ -56,4 +56,8 @@ public class ProjectNotice {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
 }

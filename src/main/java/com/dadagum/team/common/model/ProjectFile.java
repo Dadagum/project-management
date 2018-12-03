@@ -8,8 +8,6 @@ public class ProjectFile {
 
     private Integer pid;
 
-    private Integer gid;
-
     private String path;
 
     private String name;
@@ -56,11 +54,4 @@ public class ProjectFile {
         this.createTime = createTime;
     }
 
-    public Integer getGid() {
-        return gid;
-    }
-
-    public void setGid(Integer gid) {
-        this.gid = gid;
-    }
 }
