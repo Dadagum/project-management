@@ -3,7 +3,7 @@ package com.dadagum.team.common.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.Date;
+
 
 @ApiModel(value="Project",description="团队项目")
 public class Project {
@@ -18,10 +18,10 @@ public class Project {
     private String description;
 
     @ApiModelProperty(value="项目开始时间(yyyy-MM-dd)",name="startTime")
-    private Date startTime;
+    private String startTime;
 
     @ApiModelProperty(value="项目结束时间(yyyy-MM-dd)",name="startTime")
-    private Date endTime;
+    private String endTime;
 
     @ApiModelProperty(value="团队id",name="gid")
     private Integer gid;
@@ -53,19 +53,19 @@ public class Project {
         this.description = description;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

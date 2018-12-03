@@ -3,7 +3,7 @@ package com.dadagum.team.common.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.Date;
+
 
 @ApiModel(value="Group",description="团队")
 public class Group {
@@ -18,9 +18,9 @@ public class Group {
     private Integer uid;
 
     @ApiModelProperty(value="团队创建时间(yyyy-MM-dd HH:mm:ss)",name="createTime")
-    private Date createTime;
+    private String createTime;
 
-    public Group(Integer id, String name, Integer uid, Date createTime) {
+    public Group(Integer id, String name, Integer uid, String createTime) {
         this.id = id;
         this.name = name;
         this.uid = uid;
@@ -54,11 +54,11 @@ public class Group {
         this.uid = uid;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 }

@@ -1,6 +1,6 @@
 package com.dadagum.team.common.model;
 
-import java.util.Date;
+
 
 public class ProjectNotice {
 
@@ -14,7 +14,7 @@ public class ProjectNotice {
 
     private String details;
 
-    private Date createTime;
+    private String createTime;
 
 
     public Integer getId() {
@@ -49,11 +49,11 @@ public class ProjectNotice {
         this.details = details;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

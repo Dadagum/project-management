@@ -1,6 +1,6 @@
 package com.dadagum.team.common.model;
 
-import java.util.Date;
+
 
 public class ProjectFile {
 
@@ -8,11 +8,13 @@ public class ProjectFile {
 
     private Integer pid;
 
+    private Integer gid;
+
     private String path;
 
     private String name;
 
-    private Date createTime;
+    private String createTime;
 
     public Integer getId() {
         return id;
@@ -30,6 +32,10 @@ public class ProjectFile {
         this.pid = pid;
     }
 
+    public Integer getGid() { return gid; }
+
+    public void setGid(Integer gid) { this.gid = gid; }
+
     public String getPath() {
         return path;
     }
@@ -46,11 +52,11 @@ public class ProjectFile {
         this.name = name;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

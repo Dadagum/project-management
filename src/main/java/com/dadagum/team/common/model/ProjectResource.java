@@ -1,6 +1,6 @@
 package com.dadagum.team.common.model;
 
-import java.util.Date;
+
 
 public class ProjectResource {
 
@@ -8,15 +8,17 @@ public class ProjectResource {
 
     private Integer pid;
 
+    private Integer gid;
+
     private String name;
 
     private Integer quantity;
 
-    private Date createTime;
+    private String createTime;
 
-    public Date getCreateTime() { return createTime; }
+    public String getCreateTime() { return createTime; }
 
-    public void setCreateTime(Date createTime) { this.createTime = createTime; }
+    public void setCreateTime(String createTime) { this.createTime = createTime; }
 
     public Integer getId() {
         return id;
@@ -33,6 +35,10 @@ public class ProjectResource {
     public void setPid(Integer pid) {
         this.pid = pid;
     }
+
+    public Integer getGid() { return gid; }
+
+    public void setGid(Integer gid) { this.gid = gid; }
 
     public String getName() {
         return name;

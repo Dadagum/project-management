@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.Date;
+
 
 @ApiModel(value="User",description="用户")
 public class User {
@@ -26,7 +26,7 @@ public class User {
 
     private String salt;
 
-    private Date createTime;
+    private String createTime;
 
     /**
      * + phone
@@ -91,11 +91,11 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

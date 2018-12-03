@@ -1,6 +1,6 @@
 package com.dadagum.team.common.model;
 
-import java.util.Date;
+
 
 public class ResourceRecord {
 
@@ -12,7 +12,7 @@ public class ResourceRecord {
 
     private Integer num;
 
-    private Date time;
+    private String time;
 
     public Integer getId() {
         return id;
@@ -46,11 +46,11 @@ public class ResourceRecord {
         this.num = num;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }
