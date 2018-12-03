@@ -54,8 +54,8 @@ public class MissionServiceImpl implements MissionService{
         mission.setPid(10000);
         mission.setDetails("参考教学在线");
         mission.setName("编写需求文档");
-        mission.setStartTime(new Date());
-        mission.setEndTime(new Date());
+        mission.setStartTime("");
+        mission.setEndTime("");
         return mission;
     }
 
@@ -76,8 +76,8 @@ public class MissionServiceImpl implements MissionService{
         mission.setPid(10000);
         mission.setDetails("参考教学在线");
         mission.setName("编写需求文档");
-        mission.setStartTime(new Date());
-        mission.setEndTime(new Date());
+        mission.setStartTime("");
+        mission.setEndTime("");
         result.add(mission);
         return result;
     }

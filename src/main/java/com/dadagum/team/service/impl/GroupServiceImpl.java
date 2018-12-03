@@ -43,7 +43,7 @@ public class GroupServiceImpl implements GroupService {
 
         groupMapper.getGroupById(gid);
         // 暂时返回
-        Group result = new Group(10000, "朱世靖小分队", 10000, new Date());
+        Group result = new Group(10000, "朱世靖小分队", 10000, "");
         return result;
     }
 
@@ -58,7 +58,7 @@ public class GroupServiceImpl implements GroupService {
         //groupMapper.listUserGroup(userInfo.getId());
         // 暂时返回
         List<Group> result = new ArrayList<>();
-        Group group = new Group(10000, "朱世靖小分队", 10000, new Date());
+        Group group = new Group(10000, "朱世靖小分队", 10000, "");
         result.add(group);
         return result;
     }

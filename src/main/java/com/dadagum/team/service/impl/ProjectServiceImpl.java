@@ -56,8 +56,8 @@ public class ProjectServiceImpl implements ProjectService {
         project.setName("项目管理大作业");
         project.setDescription("如题");
         project.setGid(10000);
-        project.setStartTime(new Date());
-        project.setEndTime(new Date());
+        project.setStartTime("");
+        project.setEndTime("");
         return project;
     }
 
@@ -71,8 +71,8 @@ public class ProjectServiceImpl implements ProjectService {
         project.setName("项目管理大作业");
         project.setDescription("如题");
         project.setGid(10000);
-        project.setStartTime(new Date());
-        project.setEndTime(new Date());
+        project.setStartTime("");
+        project.setEndTime("");
         result.add(project);
         return result;
     }

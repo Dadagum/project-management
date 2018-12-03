@@ -14,6 +14,8 @@ public interface MissionMapper {
 
     Mission getMissionById(int mid);
 
+    int getLeaderById(int mid);
+
     List<Mission> listUserMission(@Param("uid") int uid, @Param("query") MissionQuery query);
 
     void updateMission(Mission mission);

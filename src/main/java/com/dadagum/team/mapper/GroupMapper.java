@@ -13,7 +13,7 @@ public interface GroupMapper {
 
     Group getGroupById(int gid);
 
-    Integer getLeaderIdByUidGid(int uid, int gid);
+    int getLeaderIdById(int gid);
 
     void updateGroup(Group group);
 

@@ -14,6 +14,8 @@ public interface ProjectMapper {
 
     Project getProjectById(int pid);
 
+    int getLeaderIdById(int pid);
+
     List<Project> listUserProject(@Param("uid") int uid, @Param("query") ProjectQuery query);
 
     void updateProject(Project project);

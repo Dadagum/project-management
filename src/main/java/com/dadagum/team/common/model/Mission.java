@@ -16,6 +16,8 @@ public class Mission {
 
     private Integer gid;
 
+    private Integer uid;
+
     @ApiModelProperty(value="任务名称(长度 1-20)",name="name")
     private String name;
 
@@ -27,6 +29,10 @@ public class Mission {
 
     @ApiModelProperty(value="任务结束时间(yyyy-MM-dd)",name="endTime")
     private String endTime;
+
+    private boolean finished;
+
+    private boolean overdued;
 
     public Integer getId() {
         return id;
@@ -47,6 +53,10 @@ public class Mission {
     public Integer getGid() { return gid; }
 
     public void setGid(Integer gid) { this.gid = gid; }
+
+    public Integer getUid() { return uid; }
+
+    public void setUid(Integer uid) { this.uid = uid; }
 
     public String getName() {
         return name;
@@ -79,4 +89,12 @@ public class Mission {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
+
+    public boolean isFinished() { return finished; }
+
+    public void setFinished(boolean finished) { this.finished = finished; }
+
+    public boolean isOverdue() { return overdued; }
+
+    public void setOverdue(boolean overdued) { this.overdued = overdued; }
 }

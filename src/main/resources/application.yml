@@ -12,9 +12,9 @@ spring:
 # 数据库配置
 app:
   datasource:
-    url: jdbc:mysql://localhost:3306/team?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:8080/mydb?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: lianghongda
+    password: xhk1997sp
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 5
