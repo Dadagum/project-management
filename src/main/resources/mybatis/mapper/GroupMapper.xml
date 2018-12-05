@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
+<mapper namespace="com.dadagum.group.mapper.GroupMapper">
+    <insert id="insertGroup" useGeneratedKeys="true" keyProperty="id">
+        insert into group (name, uid, create_time)
+        values (name=#{name},uid=#{uid},create_time=#{createTime});
+
+        insert into user_group(uid,gid)
+        values (uid=#{group.uid},gid=#{group.id});
+    </insert>
+
+    <delete id="deleteById">
+        delete from group where id=#{gid};
+    </delete>
+
+    <select id="getGroupById" resultType="com.dadagum.team.common.model.Group">
+        select * from group where id=#{gid};
+    </select>
+
+    <select id="getLeaderIdById" resultType="int">
+        select uid from group where id=#{gid};
+    </select>
+
+    <update id="updateGroup">
+        update group 
+          <set>
+              <if test="group.name !=null and group.name != '' ">
+                  name=#{group.name}
+              </if>
+              <if test="group.uid !=null and group.uid != '' ">
+                  uid=#{group.uid}
+              </if>
+              <if test="group.createTime !=null and group.createTime != '' ">
+                  create_time=#{group.createTime}
+              </if>
+          </set>
+        where id=#{gid}
+    </update>
+
+    <select id="listUserGroup" resultType="int">
+        select id from group where id in (
+          select uid from user_group where  uid =#{uid}
+        ) ;
+    </select>
+
+    <insert id="insertUser2Group">
+        insert into user_group(uid,gid)
+        values (uid=#{uid},gid=#{gid});
+    </insert>
+
+    <delete id="deleteUserFromGroup">
+        delete from user_group
+        where uid=#{uid} and gid=#{gid};
+    </delete>
+    
+    <select id="listUserTeammate" resultType="com.dadagum.team.common.model.User">
+        select * from user where id
+        in(select uid from user_group where gid=#{gid})
+        and id!=uid;
+    </select>
+
+    <select id="getGidByPid" resultType="int">
+        select gid from project where gid=#{gid};
+    </select>
+
+    <select id="getGidByMid" resultType="int">
+        select gid from mission where mid=#{mid};
+    </select>
+</mapper>

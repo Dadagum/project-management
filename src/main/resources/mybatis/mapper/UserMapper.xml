@@ -4,5 +4,53 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
 <mapper namespace="com.dadagum.group.mapper.UserMapper">
+    <!--<resultMap id="com.dadagum.team.common.model.User" type="UserResult">-->
+        <!--<id column="id" property="id"/>-->
+        <!--<result column="user_name" property="userName"/>-->
+    <!--</resultMap>-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into user (user_name,phone,password,rid,salt,create_time)
+        values (#{user.userName},#{user.phone},#{user.password},#{user.rid},#{user.salt},#{user.createTime});
+    </insert>
 
+    <delete id="deleteUserById">
+        delete from user where id = #{id};
+    </delete>
+
+    <select id="getUserById" resultType="com.dadagum.team.common.model.User">
+        select * from user where id=#{id};
+    </select>
+
+    <update id="updateUser">
+        update  user
+          <set>
+              <if test="user.userName!=null and user.userName!=''">
+                  user_name=#{user.userName}
+              </if>
+              <if test="user.phone!=null and user.phone!=''">
+                  phone=#{user.phone}
+              </if>
+              <if test="user.password!=null and user.password!=''">
+                  password=#{user.password}
+              </if>
+              <if test="user.rid!=null and user.rid!=''">
+                  rid=#{user.rid}
+              </if>
+              <if test="user.salt!=null and user.salt!=''">
+                  salt=#{user.salt}
+              </if>
+              <if test="user.createTime!=null and user.createTime!=''">
+                  create_time#{user.createTime}
+              </if>
+          </set>
+        where id=#{id};
+    </update>
+
+    <select id="getSalt" resultType="int">
+        select salt from user where id=#{id};
+    </select>
+
+    <select id="getUserRole" resultType="int">
+        select rid from user where id=#{id};
+    </select>
 </mapper>
