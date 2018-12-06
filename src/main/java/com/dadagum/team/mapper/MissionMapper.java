@@ -8,17 +8,17 @@ import java.util.List;
 
 public interface MissionMapper {
 
-    void insertMission(Mission mission);
+    void insertMission(@Param("mission") Mission mission);
 
-    void deleteProjectById(int mid);
+    void deleteMissionById(@Param("mid")int mid);
 
-    Mission getMissionById(int mid);
+    Mission getMissionById(@Param("mid") int mid);
 
-    int getLeaderById(int mid);
+    int getLeaderById(@Param("mid") int mid);
 
     List<Mission> listUserMission(@Param("uid") int uid, @Param("query") MissionQuery query);
 
-    void updateMission(Mission mission);
+    void updateMission(@Param("mission") Mission mission);
 
     void insertUsersMission(@Param("users") List<Integer> users, @Param("mid") int mid);
 

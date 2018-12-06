@@ -8,19 +8,19 @@ import java.util.List;
 
 public interface ProjectMapper {
 
-    void insertProject(Project project);
+    void insertProject(@Param("project") Project project);//
 
-    void deleteProjectById(int gid);
+    void deleteProjectById(@Param("pid") int pid);//
 
-    Project getProjectById(int pid);
+    Project getProjectById(@Param("pid") int pid);//
 
-    int getLeaderIdById(int pid);
+    int getLeaderIdById(@Param("pid")int pid);//
 
-    List<Project> listUserProject(@Param("uid") int uid, @Param("query") ProjectQuery query);
+    List<Project> listUserProject(@Param("uid") int uid, @Param("query") ProjectQuery query);//
 
-    void updateProject(Project project);
+    void updateProject(@Param("project") Project project);//
 
-    void insertUsersProject(@Param("users") List<Integer> users, @Param("pid") int pid);
+    void insertUsersProject(@Param("users") List<Integer> users, @Param("pid") int pid);//
 
-    void deleteUserFromProject(@Param("users") List<Integer> users, @Param("pid") int pid);
+    void deleteUserFromProject(@Param("users") List<Integer> users, @Param("pid") int pid);//
 }

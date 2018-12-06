@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
+<mapper namespace="com.dadagum.group.mapper.MissionMapper">
+    <insert id="insertMission" keyProperty="id" useGeneratedKeys="true">
+        insert into mission( name, details, start_time, end_time, pid, gid, finished, overdued, uid)
+        values (#{mission.name},#{mission.details},#{mission.startTime},#{mission.endTime},#{mission.pid},
+                #{mission.gid},#{mission.finished},#{mission.overdued},#{mission.uid})
+    </insert>
+
+    <delete id="deleteMissionById">
+        delete from mission where id=#{mid};
+    </delete>
+
+    <select id="getMissionById" resultType="com.dadagum.team.common.model.Mission">
+        select * from mission where id=#{mid}
+    </select>
+
+    <select id="getLeaderById">
+        select uid from mission where id=#{mid}
+    </select>
+
+    <select id="listUserMission" resultType="com.dadagum.team.common.model.Mission">
+        select * from mission where id in (select mid from user_mission where user_mission.uid=#{uid})
+        <if test="query.getGid()!=null and query.getGid() !=''">
+            and gid=#{query.getGid()}
+        </if>
+        <if test="query.getPid()!=null and query.getPid()!=''">
+            and pid=#{query.getPid()}
+        </if>
+    </select>
+
+    <update id="updateMission">
+        update mission
+        <set>
+            <if test="mission.name!=null and mission,name!=''">
+                name=#{mission,name}
+            </if>
+            <if test="mission.details!=null and mission.details!=''">
+                details=#{mission.details}
+            </if>
+            <if test="mission.startTime!=null and mission.startTime!=''">
+                start_time=#{mission.startTime}
+            </if>
+            <if test="mission.endTime!=null and mission.endTime!=''">
+                send_time=#{mission.endTime}
+            </if>
+            <if test="mission.pid!=null and mission.pid!=''">
+                pid=#{mission.pid}
+            </if>
+            <if test="mission gid!=null and mission.gid!=''">
+                gid=#{mission.gid}
+            </if>
+            <if test="mission.finished!=null and mission.finished!=''">
+                finished=#{mission.finished}
+            </if>
+            <if test="mission.overdued!=null and mission.overdued!=''">
+                overdued=#{mission.overdued}
+            </if>
+            <if test="mission.uid!=null and mission.uid!=''">
+                uid=#{mission.uid}
+            </if>
+        </set>
+        where id=#{mission.id}
+    </update>
+
+    <insert id="insertUserMission">
+        insert into user_mission(uid, mid) VALUES
+        <foreach collection="list" item="uid" separator=",">
+            (#{uid},#{mid})
+        </foreach>
+    </insert>
+
+    <delete id="deleteUserFromMission">
+        delete from user_mission where mid=#{mid} and uid in
+        <foreach collection="list" item="uid" separator=",">
+            #{uid}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
+<mapper namespace="com.dadagum.group.mapper.ProjectMapper">
+    <insert id="insertProejct" useGeneratedKeys="true" keyProperty="id">>
+        insert into project ( name, description, gid, uid, start_time, end_time, finish) values
+            (#{project.name},#{project.description},#{proejct.gid},#{project.uid},#{project.startTime},#{project.endTime},#{project.finish});
+    </insert>
+
+    <delete id="deleteProjectById">
+        delete from project where id=#{pid};
+    </delete>
+
+    <select id="getProjectById">
+        select * from project where id=#{pid};
+    </select>
+
+    <select id="getLeaderById">
+        select uid from project where id=#{pid};
+    </select>
+
+    <select id="listUserProject" resultType="com.dadagum.team.common.model.Project">
+        select * from project where id in(select pid from user_project where user_project.uid=#{uid})
+        <if test="query.getGid() !=null and query.getGid()!= ''">
+            and gid=#{query.getGid()}
+        </if>
+    </select>
+
+    <update id="updateProject">
+        update project
+        <set>
+            <if test="project.name!=null and project.name!=''">
+                name=#{project.name}
+            </if>
+            <if test="project.description!=null and project.description!=''">
+                description=#{project.description}
+            </if>
+            <if test="project.gid!=null and project.gid!=''">
+                gid=#{project.gid}
+            </if>
+            <if test="project.uid!=null and project,uid!=''">
+                uid=#{project.uid}
+            </if>
+            <if test="project.startTime!=null and project.startTime!=''">
+                start_time=#{project.startTime}
+            </if>
+            <if test="project.endTime!=null and project.endTime!=''">
+                end_time=#{project.endTime}
+            </if>
+            <if test="project.finish!=null and project.finish!=''">
+                finish=#{project.finish}
+            </if>
+        </set>
+        where id=#{project.id};
+    </update>
+
+    <insert id="insertUserProject">
+        insert into user_project(uid, pid) VALUES
+        <foreach collection="list" item="uid" index="index" separator=",">
+            (#{uid},#{pid})
+        </foreach>
+    </insert>
+
+    <delete id="deleteUserFromProject">
+        delete from user_project where pid=#{pid} and uid in
+        <foreach collection="list" item="uid" index="index" separator=",">
+            #{uid}
+        </foreach>
+    </delete>
+</mapper>

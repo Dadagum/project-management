@@ -6,10 +6,7 @@
 <mapper namespace="com.dadagum.group.mapper.GroupMapper">
     <insert id="insertGroup" useGeneratedKeys="true" keyProperty="id">
         insert into group (name, uid, create_time)
-        values (name=#{name},uid=#{uid},create_time=#{createTime});
-
-        insert into user_group(uid,gid)
-        values (uid=#{group.uid},gid=#{group.id});
+        values (#{name},#{uid},#{createTime});
     </insert>
 
     <delete id="deleteById">
