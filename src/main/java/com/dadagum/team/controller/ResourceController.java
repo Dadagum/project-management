@@ -48,9 +48,9 @@ public class ResourceController {
     }
 
     @PutMapping("/{pid}")
-    public ResponseEntity<JsonResult<?>> updateResource(@RequestAttribute JwtUserDTO userInfo, ResourceRecord record, @PathVariable int pid) {
-        record.setId(pid);
-        resourceService.updateResource(userInfo, record);
-        return ResponseEntity.ok(new JsonResult<>(record, "更新资源成功"));
+    public ResponseEntity<JsonResult<?>> updateResource(@RequestAttribute JwtUserDTO userInfo, ResourceQuery query, int rid) {
+        query.setRid(rid);
+        resourceService.updateResource(userInfo, query);
+        return ResponseEntity.ok(new JsonResult<>(query, "更新资源成功"));
     }
 }

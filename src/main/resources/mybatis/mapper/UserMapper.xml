@@ -9,8 +9,8 @@
         <!--<result column="user_name" property="userName"/>-->
     <!--</resultMap>-->
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
-        insert into user (user_name,phone,password,rid,salt,create_time)
-        values (#{user.userName},#{user.phone},#{user.password},#{user.rid},#{user.salt},#{user.createTime});
+        insert into user (user_name,phone,password,role,salt,create_time)
+        values (#{user.userName},#{user.phone},#{user.password},#{user.role},#{user.salt},#{user.createTime});
     </insert>
 
     <delete id="deleteUserById">
@@ -33,8 +33,8 @@
               <if test="user.password!=null and user.password!=''">
                   password=#{user.password}
               </if>
-              <if test="user.rid!=null and user.rid!=''">
-                  rid=#{user.rid}
+              <if test="user.role!=null and user.role!=''">
+                  role=#{user.role}
               </if>
               <if test="user.salt!=null and user.salt!=''">
                   salt=#{user.salt}
@@ -50,7 +50,7 @@
         select salt from user where id=#{id};
     </select>
 
-    <select id="getUserRole" resultType="int">
-        select rid from user where id=#{id};
+    <select id="getUserRole" resultType="String">
+        select role from user where id=#{id};
     </select>
 </mapper>

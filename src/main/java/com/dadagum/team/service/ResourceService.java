@@ -17,5 +17,5 @@ public interface ResourceService {
 
     List<ProjectResource> listResource(JwtUserDTO userInfo, ResourceQuery query);
 
-    void updateResource(JwtUserDTO userInfo, ResourceRecord record);
+    void updateResource(JwtUserDTO userInfo, ResourceQuery query);
 }

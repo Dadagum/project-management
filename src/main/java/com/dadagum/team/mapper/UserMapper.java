@@ -19,7 +19,7 @@ public interface UserMapper {
 
     public int countUserByNameAndPassword(User user);
 
-    public int  getUserRole(@Param("id") int id);//
+    public String  getUserRole(@Param("id") int id);//
 
 
 }

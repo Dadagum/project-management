@@ -60,7 +60,7 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public void updateResource(JwtUserDTO userInfo, ResourceRecord record) {
-        resourceMapper.updateResource(record);
+    public void updateResource(JwtUserDTO userInfo, ResourceQuery query) {
+        resourceMapper.updateResource(query,userInfo.getId());
     }
 }
