@@ -6,8 +6,8 @@
 <mapper namespace="com.dadagum.group.mapper.MissionMapper">
     <insert id="insertMission" keyProperty="id" useGeneratedKeys="true">
         insert into mission( name, details, start_time, end_time, pid, gid, finished, overdued, uid)
-        values (#{mission.name},#{mission.details},#{mission.startTime},#{mission.endTime},#{mission.pid},
-                #{mission.gid},#{mission.finished},#{mission.overdued},#{mission.uid})
+        values (#{mission.getName()},#{mission.getDetails()},#{mission.getStartTime()},#{mission.getEndTime()},#{mission.getPid()},
+                #{mission.getGid()},#{mission.getFinished()},#{mission.getOverdued()},#{mission.getUid()})
     </insert>
 
     <delete id="deleteMissionById">
@@ -35,35 +35,35 @@
     <update id="updateMission">
         update mission
         <set>
-            <if test="mission.name!=null and mission,name!=''">
-                name=#{mission,name}
+            <if test="mission.getName()!=null and mission.getName()!=''">
+                name=#{mission.getName()}
             </if>
-            <if test="mission.details!=null and mission.details!=''">
-                details=#{mission.details}
+            <if test="mission.getDetails()!=null and mission.getDetails()!=''">
+                details=#{mission.getDetails(0}
             </if>
-            <if test="mission.startTime!=null and mission.startTime!=''">
-                start_time=#{mission.startTime}
+            <if test="mission.getStartTime()!=null and mission.getStartTime()!=''">
+                start_time=#{mission.getStartTime()}
             </if>
-            <if test="mission.endTime!=null and mission.endTime!=''">
-                send_time=#{mission.endTime}
+            <if test="mission.getEndTime()!=null and mission.getEndTime()!=''">
+                send_time=#{mission.getEndTime()}
             </if>
-            <if test="mission.pid!=null and mission.pid!=''">
-                pid=#{mission.pid}
+            <if test="mission.getPid()!=null and mission.getPid()!=''">
+                pid=#{mission.getPid()}
             </if>
-            <if test="mission gid!=null and mission.gid!=''">
-                gid=#{mission.gid}
+            <if test="mission.getGid(0!=null and mission.getGid()!=''">
+                gid=#{mission.getGid()}
             </if>
-            <if test="mission.finished!=null and mission.finished!=''">
-                finished=#{mission.finished}
+            <if test="mission.getFinished()!=null and mission.getFinished()!=''">
+                finished=#{mission.getFinished()}
             </if>
-            <if test="mission.overdued!=null and mission.overdued!=''">
-                overdued=#{mission.overdued}
+            <if test="mission.getOverdued()!=null and mission.getOverdued()!=''">
+                overdued=#{mission.getOverdued()}
             </if>
-            <if test="mission.uid!=null and mission.uid!=''">
-                uid=#{mission.uid}
+            <if test="mission.getUid()!=null and mission.getUid()!=''">
+                uid=#{mission.getUid()}
             </if>
         </set>
-        where id=#{mission.id}
+        where id=#{mission.getId()}
     </update>
 
     <insert id="insertUserMission">

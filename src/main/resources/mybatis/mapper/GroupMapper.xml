@@ -6,7 +6,7 @@
 <mapper namespace="com.dadagum.group.mapper.GroupMapper">
     <insert id="insertGroup" useGeneratedKeys="true" keyProperty="id">
         insert into group (name, uid, create_time)
-        values (#{name},#{uid},#{createTime});
+        values (#{group.getName()},#{group.getUid()},#{group.getCreateTime()});
     </insert>
 
     <delete id="deleteById">
@@ -24,14 +24,14 @@
     <update id="updateGroup">
         update group 
           <set>
-              <if test="group.name !=null and group.name != '' ">
-                  name=#{group.name}
+              <if test="group.getName() !=null and group.getName() != '' ">
+                  name=#{group.getName()}
               </if>
-              <if test="group.uid !=null and group.uid != '' ">
-                  uid=#{group.uid}
+              <if test="group.getUid() !=null and group.getUid() != '' ">
+                  uid=#{group.getUid()}
               </if>
-              <if test="group.createTime !=null and group.createTime != '' ">
-                  create_time=#{group.createTime}
+              <if test="group.getCreateTime() !=null and group.getCreateTime() != '' ">
+                  create_time=#{group.getCreateTime()}
               </if>
           </set>
         where id=#{gid}

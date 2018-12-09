@@ -6,7 +6,7 @@
 <mapper namespace="com.dadagum.group.mapper.ProjectMapper">
     <insert id="insertProejct" useGeneratedKeys="true" keyProperty="id">>
         insert into project ( name, description, gid, uid, start_time, end_time, finish) values
-            (#{project.name},#{project.description},#{proejct.gid},#{project.uid},#{project.startTime},#{project.endTime},#{project.finish});
+            (#{project.getName()},#{project.getDescription()},#{project.getGid()},#{project.getUid()},#{project.getStartTime()},#{project.getEndTime()},#{project.getFinish()});
     </insert>
 
     <delete id="deleteProjectById">
@@ -31,29 +31,29 @@
     <update id="updateProject">
         update project
         <set>
-            <if test="project.name!=null and project.name!=''">
-                name=#{project.name}
+            <if test="project.getName()!=null and project.getName()!=''">
+                name=#{project.getName()}
             </if>
-            <if test="project.description!=null and project.description!=''">
-                description=#{project.description}
+            <if test="project.getDescription()!=null and project.getDescription()!=''">
+                description=#{project.getDescription()}
             </if>
-            <if test="project.gid!=null and project.gid!=''">
-                gid=#{project.gid}
+            <if test="project.getGid(0!=null and project.getGid()!=''">
+                gid=#{project.getGid()}
             </if>
-            <if test="project.uid!=null and project,uid!=''">
-                uid=#{project.uid}
+            <if test="project.getUid()!=null and project.getUid()!=''">
+                uid=#{project.getUid()}
             </if>
-            <if test="project.startTime!=null and project.startTime!=''">
-                start_time=#{project.startTime}
+            <if test="project.getStartTime()!=null and project.getStartTime()!=''">
+                start_time=#{project.getStartTime()}
             </if>
-            <if test="project.endTime!=null and project.endTime!=''">
-                end_time=#{project.endTime}
+            <if test="project.getEndTime()!=null and project.getEndTime()!=''">
+                end_time=#{project.getEndTime()}
             </if>
-            <if test="project.finish!=null and project.finish!=''">
-                finish=#{project.finish}
+            <if test="project.getFinish()!=null and project.getFinish()!=''">
+                finish=#{project.getFinish()}
             </if>
         </set>
-        where id=#{project.id};
+        where id=#{project.getId()};
     </update>
 
     <insert id="insertUserProject">

@@ -10,7 +10,7 @@
     <!--</resultMap>-->
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
         insert into user (user_name,phone,password,role,salt,create_time)
-        values (#{user.userName},#{user.phone},#{user.password},#{user.role},#{user.salt},#{user.createTime});
+        values (#{user.getUserName()},#{user.getPhone()},#{user.getPassword()},#{user.getRole()},#{user.getSalt()},#{user.getCreateTime()});
     </insert>
 
     <delete id="deleteUserById">
@@ -24,23 +24,23 @@
     <update id="updateUser">
         update  user
           <set>
-              <if test="user.userName!=null and user.userName!=''">
-                  user_name=#{user.userName}
+              <if test="user.grtUserName()!=null and user.getUserName()!=''">
+                  user_name=#{user.getUserName()}
               </if>
-              <if test="user.phone!=null and user.phone!=''">
-                  phone=#{user.phone}
+              <if test="user.getPhone()!=null and user.getPhone()!=''">
+                  phone=#{user.getPhone()}
               </if>
-              <if test="user.password!=null and user.password!=''">
-                  password=#{user.password}
+              <if test="user.getPassword()!=null and user.getPassword()!=''">
+                  password=#{user.getPassword()}
               </if>
-              <if test="user.role!=null and user.role!=''">
-                  role=#{user.role}
+              <if test="user.getRole()!=null and user.getRole()!=''">
+                  role=#{user.getRole()}
               </if>
-              <if test="user.salt!=null and user.salt!=''">
-                  salt=#{user.salt}
+              <if test="user.getSalt()!=null and user.getSalt()!=''">
+                  salt=#{user.getSalt()}
               </if>
-              <if test="user.createTime!=null and user.createTime!=''">
-                  create_time#{user.createTime}
+              <if test="user.getCreateTime()!=null and user.getCreateTime()!=''">
+                  create_time#{user.getCreateTime()}
               </if>
           </set>
         where id=#{id};

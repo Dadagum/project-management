@@ -5,7 +5,7 @@
 <mapper namespace="com.dadagum.group.mapper.ResourceMapper">
     <insert id="insertResource" useGeneratedKeys="true" keyProperty="id">
         insert into project_resource( name, quantity, pid, create_time, gid)
-        values (#{resource.name},#{resource.quantity},#{resource.pid},#{resource.createTime},#{resource.gid})
+        values (#{resource.getName()},#{resource.getQuantity()},#{resource.getPid()},#{resource.getCreateTime()},#{resource.getGid()})
     </insert>
     
     <delete id="deleteResourceById">
@@ -19,18 +19,18 @@
     <select id="listResource" resultType="com.dadagum.team.common.model.ProjectResource">
         select * from project_resource where 1=1 
         <if test="query.getPid()!=null and query.getPid()!=''">
-            pid=#{query.pid}
+            pid=#{query.getPid()}
         </if>
     </select>
     
     <update id="updateResource">
         update  project_resource
           <set>
-              <if test="query.name!=null and query.name!=''">
-                  name=#{query.name}
+              <if test="query.getName()!=null and query.getName()!=''">
+                  name=#{query.hetName()}
               </if>
-              <if test="query.quantity!=null and query.quantity!=''">
-                  quantity=quantity+#{query.quantity}
+              <if test="query.getQuantity()!=null and query.getQuantity()!=''">
+                  quantity=quantity+#{query.getQuantity()}
               </if>
           </set>
         where id=#{rid}
@@ -38,7 +38,7 @@
 
     <insert id="insertResourceRecord" useGeneratedKeys="true" keyProperty="id">
         insert into resource_record(rid, details, num, time)
-        values (rid=#{record.rid},details=#{record.details},num=#{record.num},time=#{record.time})
+        values (rid=#{record.getRid()},details=#{record.getDetails()},num=#{record.getNum()},time=#{record.getTime()})
     </insert>
 
     <select id="listResourceRecord" resultType="com.dadagum.team.common.model.ResourceRecord">
