@@ -20,7 +20,7 @@ public interface ProjectMapper {
 
     void updateProject(@Param("project") Project project);//
 
-    void insertUsersProject(@Param("users") List<Integer> users, @Param("pid") int pid);//
+    void insertUsersProject(@Param("uid") Integer uid, @Param("pid") int pid);//
 
-    void deleteUserFromProject(@Param("users") List<Integer> users, @Param("pid") int pid);//
+    void deleteUserFromProject(@Param("uid") Integer uid, @Param("pid") int pid);//
 }

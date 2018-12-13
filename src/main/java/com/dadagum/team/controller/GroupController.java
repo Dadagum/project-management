@@ -31,9 +31,8 @@ public class GroupController {
 
     @PostMapping
     @ApiOperation(value = "新建一个团队", notes = "必填字段：name")
-    public ResponseEntity<JsonResult<?>> addGroup(Group group){
-        groupService.insertGroup(group);
-        group.setId(10000); // 暂时模拟团队id
+    public ResponseEntity<JsonResult<?>> addGroup(Group group, @RequestAttribute JwtUserDTO userInfo){
+        group=groupService.insertGroup(group,userInfo);
         return ResponseEntity.ok().body(new JsonResult<>(group, "增加团队成功"));
     }
 
@@ -63,7 +62,6 @@ public class GroupController {
     public ResponseEntity<JsonResult<?>> updateGroup(Group group, @PathVariable int gid, @RequestAttribute JwtUserDTO userInfo){
         group.setId(gid);
         groupService.updateGroup(group, userInfo);
-        group.setId(10000);
         return ResponseEntity.ok().body(new JsonResult<>(group, "更新团队信息成功"));
     }
 
@@ -85,10 +83,9 @@ public class GroupController {
     @GetMapping("/{gid}/users")
     @ApiOperation(value = "得到团队中的队友列表", notes = "url参数：团队id")
     @JsonView(User.PublicUserInfo.class)
-    public ResponseEntity<JsonResult<?>> listTeamMate(@PathVariable int gid) {
-        List<User> list = new ArrayList<>();
-        list.add(new User("朱世靖", Role.USER.value()));
-        list.add(new User("朱世靖爸爸", Role.USER.value()));
-        return new ResponseEntity<>(new JsonResult<>(list, "成功获得队友列表"), HttpStatus.OK);
+    public ResponseEntity<JsonResult<?>> listTeamMate(@PathVariable int gid, @RequestAttribute JwtUserDTO userInfo) {
+        List<User> list = groupService.listUserTeammate(userInfo,gid);
+        System.out.println("???" + list);
+        return ResponseEntity.ok().body(new JsonResult<>(list, "成功获得队友列表"));
     }
 }

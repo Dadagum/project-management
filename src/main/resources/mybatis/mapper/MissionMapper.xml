@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
-<mapper namespace="com.dadagum.group.mapper.MissionMapper">
-    <insert id="insertMission" keyProperty="id" useGeneratedKeys="true">
+<mapper namespace="com.dadagum.team.mapper.MissionMapper">
+    <insert id="insertMission" keyProperty="mission.id" useGeneratedKeys="true" parameterType="com.dadagum.team.common.model.Mission">
         insert into mission( name, details, start_time, end_time, pid, gid, finished, overdued, uid)
-        values (#{mission.getName()},#{mission.getDetails()},#{mission.getStartTime()},#{mission.getEndTime()},#{mission.getPid()},
-                #{mission.getGid()},#{mission.getFinished()},#{mission.getOverdued()},#{mission.getUid()})
+        values (#{mission.name},#{mission.details},#{mission.startTime},#{mission.endTime},#{mission.pid},
+                #{mission.gid},#{mission.finished},#{mission.overdued},#{mission.uid})
     </insert>
 
     <delete id="deleteMissionById">
@@ -24,46 +24,46 @@
 
     <select id="listUserMission" resultType="com.dadagum.team.common.model.Mission">
         select * from mission where id in (select mid from user_mission where user_mission.uid=#{uid})
-        <if test="query.getGid()!=null and query.getGid() !=''">
-            and gid=#{query.getGid()}
+        <if test="query.gid!=null and query.gid !=''">
+            and gid=#{query.gid}
         </if>
-        <if test="query.getPid()!=null and query.getPid()!=''">
-            and pid=#{query.getPid()}
+        <if test="query.pid!=null and query.pid!=''">
+            and pid=#{query.pid}
         </if>
     </select>
 
     <update id="updateMission">
         update mission
         <set>
-            <if test="mission.getName()!=null and mission.getName()!=''">
-                name=#{mission.getName()}
+            <if test="mission.name!=null and mission.name!=''">
+                name=#{mission.name}
             </if>
-            <if test="mission.getDetails()!=null and mission.getDetails()!=''">
-                details=#{mission.getDetails(0}
+            <if test="mission.details!=null and mission.details!=''">
+                details=#{mission.details}
             </if>
-            <if test="mission.getStartTime()!=null and mission.getStartTime()!=''">
-                start_time=#{mission.getStartTime()}
+            <if test="mission.startTime!=null and mission.startTime!=''">
+                start_time=#{mission.startTime}
             </if>
-            <if test="mission.getEndTime()!=null and mission.getEndTime()!=''">
-                send_time=#{mission.getEndTime()}
+            <if test="mission.endTime!=null and mission.endTime!=''">
+                send_time=#{mission.endTime}
             </if>
-            <if test="mission.getPid()!=null and mission.getPid()!=''">
-                pid=#{mission.getPid()}
+            <if test="mission.pid!=null and mission.pid!=''">
+                pid=#{mission.pid}
             </if>
-            <if test="mission.getGid(0!=null and mission.getGid()!=''">
-                gid=#{mission.getGid()}
+            <if test="mission.gid!=null and mission.gid!=''">
+                gid=#{mission.gid}
             </if>
-            <if test="mission.getFinished()!=null and mission.getFinished()!=''">
-                finished=#{mission.getFinished()}
+            <if test="mission.finished!=null and mission.finished!=''">
+                finished=#{mission.finished}
             </if>
-            <if test="mission.getOverdued()!=null and mission.getOverdued()!=''">
-                overdued=#{mission.getOverdued()}
+            <if test="mission.overdued!=null and mission.overdued!=''">
+                overdued=#{mission.overdued}
             </if>
-            <if test="mission.getUid()!=null and mission.getUid()!=''">
-                uid=#{mission.getUid()}
+            <if test="mission.uid!=null and mission.uid!=''">
+                uid=#{mission.uid}
             </if>
         </set>
-        where id=#{mission.getId()}
+        where id=#{mission.id}
     </update>
 
     <insert id="insertUserMission">

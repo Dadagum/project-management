@@ -47,7 +47,7 @@ public class ResourceController {
         return ResponseEntity.ok(new JsonResult<>(result, "查看项目资源列表成功"));
     }
 
-    @PutMapping("/{pid}")
+    @PutMapping
     public ResponseEntity<JsonResult<?>> updateResource(@RequestAttribute JwtUserDTO userInfo, ResourceQuery query, int rid) {
         query.setRid(rid);
         resourceService.updateResource(userInfo, query);

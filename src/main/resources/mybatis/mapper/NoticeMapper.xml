@@ -3,17 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
-<mapper namespace="com.dadagum.group.mapper.ProjectMapper">
-    <insert id="insertNotice" keyProperty="id" useGeneratedKeys="true">
+<mapper namespace="com.dadagum.team.mapper.NoticeMapper">
+    <insert id="insertNotice" keyProperty="notice.id" useGeneratedKeys="true" parameterType="com.dadagum.team.common.model.ProjectNotice">
         insert into project_notice(detals, pid, uid, create_time, title)
-        values (#{notice.getDetails()},#{notice.getPid()},#{notice.getUid()},#{notice.getCreateTime()},#{notice.getTitle()})
+        values (#{notice.details},#{notice.pid},#{notice.uid},#{notice.createTime},#{notice.title})
     </insert>
     
     <select id="listProjectNotice" resultType="com.dadagum.team.common.model.ProjectNotice">
         select * from project_notice where pid=#{pid}
     </select>
     
-    <select id="listProjectNotice" resultType="com.dadagum.team.common.model.ProjectNotice">
+    <select id="listUserNotice" resultType="com.dadagum.team.common.model.ProjectNotice">
         select * from project_notice where uid=#{uid}
     </select>
     
@@ -28,13 +28,13 @@
     <update id="updateNotice">
         update project_notice
         <set>
-            <if test="notice.getTitle()!=null and notice.getTitle()!=''">
-                title=notice.getTitle()
+            <if test="notice.title!=null and notice.title!=''">
+                title=notice.title
             </if>
-            <if test="notice.details!=null and notice.title!=''">
-                details=notice.getDetails()
+            <if test="notice.details!=null and notice.details!=''">
+                details=notice.details
             </if>
         </set>
-        where id=#{notice.getId()}
+        where id=#{notice.id}
     </update>
 </mapper>

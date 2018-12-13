@@ -33,9 +33,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void insertProject(JwtUserDTO userInfo, Project project) {
+    public Project insertProject(JwtUserDTO userInfo, Project project) {
         authService.checkIfGroupLeader(userInfo.getId(), project.getGid());
         projectMapper.insertProject(project);
+        projectMapper.insertUsersProject(project.getUid(),project.getId());
+        return project;
     }
 
     @Override
@@ -50,53 +52,40 @@ public class ProjectServiceImpl implements ProjectService {
     public Project getProject(JwtUserDTO userInfo, int pid) {
         Integer gid = groupService.getGidByPid(pid);
         authService.checkIfGroupMember(userInfo.getId(), gid);
-        // projectMapper.getProjectById(pid);
-        Project project = new Project();
-        project.setId(10000);
-        project.setName("项目管理大作业");
-        project.setDescription("如题");
-        project.setGid(10000);
-        project.setStartTime("");
-        project.setEndTime("");
+        Project project = projectMapper.getProjectById(pid);
         return project;
     }
 
     @Override
     public List<Project> listUserProject(JwtUserDTO userInfo, ProjectQuery query) {
-        authService.checkIfGroupMember(userInfo.getId(), query.getGid());
+        //authService.checkIfGroupMember(userInfo.getId(), query.getGid());
         // projectMapper.listUserProject(userInfo.getId(), query);
-        List<Project> result = new ArrayList<>();
-        Project project = new Project();
-        project.setId(10000);
-        project.setName("项目管理大作业");
-        project.setDescription("如题");
-        project.setGid(10000);
-        project.setStartTime("");
-        project.setEndTime("");
-        result.add(project);
+        List<Project> result = projectMapper.listUserProject(userInfo.getId(),query);
         return result;
     }
 
     @Override
     public void updateProject(JwtUserDTO userInfo, Project project) {
-        authService.checkIfGroupLeader(userInfo.getId(), project.getGid());
+        authService.checkIfProjectLeader(userInfo.getId(), project.getId());
         projectMapper.updateProject(project);
     }
 
     @Override
     public void assignUserProject(JwtUserDTO userInfo, List<Integer> users, int pid) {
-        Integer gid = groupService.getGidByPid(pid);
+        int gid = groupService.getGidByPid(pid);
         authService.checkIfGroupLeader(userInfo.getId(), gid);
         for (int uid : users) {
             authService.checkIfGroupMember(uid, gid);
+            projectMapper.insertUsersProject(uid, pid);
         }
-        projectMapper.insertUsersProject(users, pid);
     }
 
     @Override
     public void deleteUserFromProject(JwtUserDTO userInfo, List<Integer> users, int pid) {
         Integer gid = groupService.getGidByPid(pid);
         authService.checkIfGroupLeader(userInfo.getId(), gid);
-        projectMapper.deleteUserFromProject(users, pid);
+        for(int uid:users){
+            projectMapper.deleteUserFromProject(uid, pid);
+        }
     }
 }

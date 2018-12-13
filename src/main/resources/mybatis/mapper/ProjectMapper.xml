@@ -3,70 +3,66 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
-<mapper namespace="com.dadagum.group.mapper.ProjectMapper">
-    <insert id="insertProejct" useGeneratedKeys="true" keyProperty="id">>
+<mapper namespace="com.dadagum.team.mapper.ProjectMapper">
+    <insert id="insertProject" useGeneratedKeys="true" keyProperty="project.id" parameterType="com.dadagum.team.common.model.Project">
         insert into project ( name, description, gid, uid, start_time, end_time, finish) values
-            (#{project.getName()},#{project.getDescription()},#{project.getGid()},#{project.getUid()},#{project.getStartTime()},#{project.getEndTime()},#{project.getFinish()});
+            (#{project.name},#{project.description},#{project.gid},#{project.uid},#{project.startTime},#{project.endTime},#{project.finish});
     </insert>
 
     <delete id="deleteProjectById">
         delete from project where id=#{pid};
     </delete>
 
-    <select id="getProjectById">
+    <select id="getProjectById" resultType="com.dadagum.team.common.model.Project">
         select * from project where id=#{pid};
     </select>
 
-    <select id="getLeaderById">
+    <select id="getLeaderIdById" resultType="int">
         select uid from project where id=#{pid};
     </select>
 
     <select id="listUserProject" resultType="com.dadagum.team.common.model.Project">
         select * from project where id in(select pid from user_project where user_project.uid=#{uid})
-        <if test="query.getGid() !=null and query.getGid()!= ''">
-            and gid=#{query.getGid()}
+        <if test="query.gid !=null and query.gid!= ''">
+            and gid=#{query.gid}
         </if>
     </select>
 
     <update id="updateProject">
         update project
         <set>
-            <if test="project.getName()!=null and project.getName()!=''">
-                name=#{project.getName()}
+            <if test="project.name!=null and project.name!=''">
+                name=#{project.name}
             </if>
-            <if test="project.getDescription()!=null and project.getDescription()!=''">
-                description=#{project.getDescription()}
+            <if test="project.description!=null and project.description!=''">
+                description=#{project.description}
             </if>
-            <if test="project.getGid(0!=null and project.getGid()!=''">
-                gid=#{project.getGid()}
+            <if test="project.gid!=null and project.gid!=''">
+                gid=#{project.gid}
             </if>
-            <if test="project.getUid()!=null and project.getUid()!=''">
-                uid=#{project.getUid()}
+            <if test="project.uid!=null and project.uid!=''">
+                uid=#{project.uid}
             </if>
-            <if test="project.getStartTime()!=null and project.getStartTime()!=''">
-                start_time=#{project.getStartTime()}
+            <if test="project.startTime!=null and project.startTime!=''">
+                start_time=#{project.startTime}
             </if>
-            <if test="project.getEndTime()!=null and project.getEndTime()!=''">
-                end_time=#{project.getEndTime()}
+            <if test="project.endTime!=null and project.endTime!=''">
+                end_time=#{project.endTime}
             </if>
-            <if test="project.getFinish()!=null and project.getFinish()!=''">
-                finish=#{project.getFinish()}
+            <if test="project.finish!=null and project.finish!=''">
+                finish=#{project.finish}
             </if>
         </set>
-        where id=#{project.getId()};
+        where id=#{project.id};
     </update>
 
-    <insert id="insertUserProject">
+    <insert id="insertUsersProject">
         insert into user_project(uid, pid) VALUES
-        <foreach collection="list" item="uid" index="index" separator=",">
             (#{uid},#{pid})
-        </foreach>
     </insert>
 
     <delete id="deleteUserFromProject">
         delete from user_project where pid=#{pid} and uid in
-        <foreach collection="list" item="uid" index="index" separator=",">
             #{uid}
-        </foreach>
     </delete>
 </mapper>

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MissionService {
 
-    void insertMission(JwtUserDTO userInfo, Mission mission);
+    Mission insertMission(JwtUserDTO userInfo, Mission mission);
 
     void deleteMission(JwtUserDTO userInfo, int mid);
 

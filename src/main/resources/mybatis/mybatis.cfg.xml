@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- 使用xml的方式配置mapper，这个为全局配置文件 -->
 <configuration>
-    
+
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>

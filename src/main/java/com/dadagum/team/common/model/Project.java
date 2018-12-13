@@ -26,6 +26,8 @@ public class Project {
     @ApiModelProperty(value="团队id",name="gid")
     private Integer gid;
 
+    private Integer uid;
+
     @ApiModelProperty(value="项目完成情况",name="finish")
     private boolean finish;
 
@@ -84,4 +86,8 @@ public class Project {
     public void setFinish(boolean finish) {
         this.finish = finish;
     }
+
+    public Integer getUid() { return uid; }
+
+    public void setUid(Integer uid) { this.uid = uid; }
 }

@@ -27,6 +27,15 @@ public class User {
 
     private String createTime;
 
+    public User(String userName, String password, String phone, String role, String salt, String createTime) {
+        this.userName = userName;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.salt = salt;
+        this.createTime = createTime;
+    }
+
     /**
      * + phone
      */

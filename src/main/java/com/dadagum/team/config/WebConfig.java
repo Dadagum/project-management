@@ -1,12 +1,16 @@
 package com.dadagum.team.config;
 
+import com.dadagum.team.common.interceptor.AuthorizationInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig {
+@EnableWebMvc
+public class WebConfig implements WebMvcConfigurer{
 
     /**
      * 增加跨域支持(CORS方式)
@@ -17,13 +21,20 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
+                registry.addMapping("/**")
                         .allowedOrigins("http://localhost")
                         .allowedMethods("PUT", "DELETE")
                         .allowedHeaders("Authorization")
-                        .exposedHeaders("token")
+                        .exposedHeaders("Authorization")
                         .allowCredentials(true).maxAge(3600);
             }
         };
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AuthorizationInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/registration", "/authentication");
     }
 }

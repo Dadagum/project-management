@@ -42,8 +42,7 @@ public class JWTUtils {
         return token;
     }
 
-    public static <T> T decodeAndGet(String token, Class<T> clazz){
-        try {
+    public static <T> T decodeAndGet(String token, Class<T> clazz) throws IOException {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             JWTVerifier verifier = JWT.require(algorithm)
                     .withIssuer("dadagum")
@@ -52,9 +51,5 @@ public class JWTUtils {
             Claim claim = jwt.getClaim("data");
             String jsonStr = claim.asString();
             return JacksonUtils.readValue(jsonStr, clazz);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProjectService {
 
-    void insertProject(JwtUserDTO userInfo, Project project);
+    Project insertProject(JwtUserDTO userInfo, Project project);
 
     void deleteProject(JwtUserDTO userInfo, int pid);
 

@@ -3,14 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 使用xml的形式配置mapper，此处编写sql映射文件 -->
-<mapper namespace="com.dadagum.group.mapper.UserMapper">
+<mapper namespace="com.dadagum.team.mapper.UserMapper">
     <!--<resultMap id="com.dadagum.team.common.model.User" type="UserResult">-->
         <!--<id column="id" property="id"/>-->
         <!--<result column="user_name" property="userName"/>-->
     <!--</resultMap>-->
-    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="user.id" parameterType="com.dadagum.team.common.model.User">
         insert into user (user_name,phone,password,role,salt,create_time)
-        values (#{user.getUserName()},#{user.getPhone()},#{user.getPassword()},#{user.getRole()},#{user.getSalt()},#{user.getCreateTime()});
+        values (#{user.userName},#{user.phone},#{user.password},#{user.role},#{user.salt},#{user.createTime});
     </insert>
 
     <delete id="deleteUserById">
@@ -24,33 +24,53 @@
     <update id="updateUser">
         update  user
           <set>
-              <if test="user.grtUserName()!=null and user.getUserName()!=''">
-                  user_name=#{user.getUserName()}
+              <if test="user.grtUserName!=null and user.getUserName!=''">
+                  user_name=#{user.getUserName}
               </if>
-              <if test="user.getPhone()!=null and user.getPhone()!=''">
-                  phone=#{user.getPhone()}
+              <if test="user.getPhone!=null and user.getPhone!=''">
+                  phone=#{user.getPhone}
               </if>
-              <if test="user.getPassword()!=null and user.getPassword()!=''">
-                  password=#{user.getPassword()}
+              <if test="user.getPassword!=null and user.getPassword!=''">
+                  password=#{user.getPassword}
               </if>
-              <if test="user.getRole()!=null and user.getRole()!=''">
-                  role=#{user.getRole()}
+              <if test="user.getRole!=null and user.getRole!=''">
+                  role=#{user.getRole}
               </if>
-              <if test="user.getSalt()!=null and user.getSalt()!=''">
-                  salt=#{user.getSalt()}
+              <if test="user.getSalt!=null and user.getSalt!=''">
+                  salt=#{user.getSalt}
               </if>
-              <if test="user.getCreateTime()!=null and user.getCreateTime()!=''">
-                  create_time#{user.getCreateTime()}
+              <if test="user.getCreateTime!=null and user.getCreateTime!=''">
+                  create_time#{user.getCreateTime}
               </if>
           </set>
         where id=#{id};
     </update>
 
-    <select id="getSalt" resultType="int">
-        select salt from user where id=#{id};
+    <select id="getSalt" resultType="String">
+        select salt from user where user_name=#{name};
     </select>
 
     <select id="getUserRole" resultType="String">
         select role from user where id=#{id};
+    </select>
+
+    <select id="checkUserName" resultType="boolean">
+        <![CDATA[ select count(id) from user where user_name = #{name} ]]>
+    </select>
+
+    <select id="checkUserPhone" resultType="boolean">
+        <![CDATA[ select count(id) from user where phone = #{phone} ]]>
+    </select>
+
+    <select id="checkUserLogin" resultType="boolean">
+        <![CDATA[ select count(id) from user where user_name = #{name} and password= #{password} ]]>
+    </select>
+
+    <select id="countUserByNameAndPassword" resultType="int">
+        select count(id) from user where user_name=#{user.userName} and password=#{user.password}
+    </select>
+
+    <select id="getUserByName" resultType="com.dadagum.team.common.model.User">
+        select  * from user where user_name=#{name};
     </select>
 </mapper>

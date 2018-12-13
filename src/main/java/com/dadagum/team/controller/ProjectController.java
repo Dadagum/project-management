@@ -29,8 +29,7 @@ public class ProjectController {
     @PostMapping
     @ApiOperation(value = "增加团队项目", notes = "必填字段: name, description, startTime, endTime, gid, uid")
     public ResponseEntity<JsonResult<?>> addProject(Project project, @RequestAttribute JwtUserDTO userInfo) {
-        projectService.insertProject(userInfo, project);
-        project.setId(10000);
+        project=projectService.insertProject(userInfo, project);
         return ResponseEntity.ok().body(new JsonResult<>(project, "创建团队项目成功"));
     }
 
@@ -56,7 +55,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{pid}")
-    @ApiOperation(value = "更新某一个项目的信息", notes = "必填参数：gid, uid. 选填参数:name, description, startTime, endTime. url参数: pid")
+    @ApiOperation(value = "更新某一个项目的信息", notes = "url参数pid. 选填参数:name, description, startTime, endTime. url参数: pid")
     public ResponseEntity<JsonResult<?>> updateProject(@PathVariable int pid, Project project ,@RequestAttribute JwtUserDTO userInfo) {
         project.setId(pid);
         projectService.updateProject(userInfo, project);

@@ -18,9 +18,9 @@ public interface GroupMapper {
 
     void updateGroup(@Param("group") Group group);//
 
-    List<Integer> listUserGroup(@Param("uid") int uid);//
+    List<Group> listUserGroup(@Param("uid") int uid);//
 
-    void insertUser2Group(@Param("gid") int gid,@Param("uid") int uid);//
+    void insertUser2Group(@Param("uid") int uid,@Param("gid") int gid);//
 
     void deleteUserFromGroup(@Param("gid") int gid,@Param("uid") int uid);//
 

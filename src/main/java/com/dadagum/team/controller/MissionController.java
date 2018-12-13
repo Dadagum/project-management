@@ -29,9 +29,7 @@ public class MissionController {
     @PostMapping
     @ApiOperation(value = "增加团队项目任务", notes = "必填字段: pid, name, details, startTime, endTime")
     public ResponseEntity<JsonResult<?>> addMission(Mission mission, @RequestAttribute JwtUserDTO userInfo){
-        missionService.insertMission(userInfo, mission);
-        mission.setId(10000);
-        mission.setPid(mission.getPid());
+        mission=missionService.insertMission(userInfo, mission);
         return ResponseEntity.ok(new JsonResult<>(mission, "增加任务成功"));
     }
 

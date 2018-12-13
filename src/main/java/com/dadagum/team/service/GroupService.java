@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface GroupService {
 
-    void insertGroup(Group group);
+    Group insertGroup(Group group, JwtUserDTO userInfo);
 
     void deleteGroup(int gid, JwtUserDTO userInfo);
 

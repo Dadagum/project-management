@@ -33,9 +33,10 @@ public class MissionServiceImpl implements MissionService{
     }
 
     @Override
-    public void insertMission(JwtUserDTO userInfo, Mission mission) {
-        authService.checkIfGroupLeader(userInfo.getId(), mission.getGid());
+    public Mission insertMission(JwtUserDTO userInfo, Mission mission) {
+        authService.checkIfGroupLeader(userInfo.getId(), mission.getPid());
         missionMapper.insertMission(mission);
+        return  mission;
     }
 
     @Override
