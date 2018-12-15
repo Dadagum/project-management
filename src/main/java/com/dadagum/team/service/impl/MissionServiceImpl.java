@@ -36,27 +36,21 @@ public class MissionServiceImpl implements MissionService{
     public Mission insertMission(JwtUserDTO userInfo, Mission mission) {
         authService.checkIfGroupLeader(userInfo.getId(), mission.getPid());
         missionMapper.insertMission(mission);
+        missionMapper.insertUsersMission(mission.getUid(),mission.getId());
         return  mission;
     }
 
     @Override
     public void deleteMission(JwtUserDTO userInfo, int mid) {
-        int gid = groupService.getGidByMid(mid);
-        authService.checkIfGroupLeader(userInfo.getId(), gid);
+        authService.checkIfMissionLeader(userInfo.getId(), mid);
+        missionMapper.deleteMissionById(mid);
     }
 
     @Override
     public Mission getMission(JwtUserDTO userInfo, int mid) {
         int gid = groupService.getGidByMid(mid);
         authService.checkIfGroupMember(userInfo.getId(), gid);
-        // missionMapper.getMissionById(mid);
-        Mission mission = new Mission();
-        mission.setId(10000);
-        mission.setPid(10000);
-        mission.setDetails("参考教学在线");
-        mission.setName("编写需求文档");
-        mission.setStartTime("");
-        mission.setEndTime("");
+        Mission mission = missionMapper.getMissionById(mid);
         return mission;
     }
 
@@ -67,25 +61,14 @@ public class MissionServiceImpl implements MissionService{
         } else if (query.getPid() != null) {
             int gid = groupService.getGidByPid(query.getPid());
             authService.checkIfGroupMember(userInfo.getId(), gid);
-        } else {
-            throw new PermissionDeniedException("您无权操作");
         }
-        // missionMapper.listUserMission(userInfo.getId(), query);
-        List<Mission> result = new ArrayList<>();
-        Mission mission = new Mission();
-        mission.setId(10000);
-        mission.setPid(10000);
-        mission.setDetails("参考教学在线");
-        mission.setName("编写需求文档");
-        mission.setStartTime("");
-        mission.setEndTime("");
-        result.add(mission);
+        List<Mission> result = missionMapper.listUserMission(query);
         return result;
     }
 
     @Override
     public void updateMission(JwtUserDTO userInfo, Mission mission) {
-        authService.checkIfGroupLeader(userInfo.getId(), mission.getGid());
+        authService.checkIfMissionLeader(userInfo.getId(), mission.getId());
         missionMapper.updateMission(mission);
     }
 
@@ -93,17 +76,20 @@ public class MissionServiceImpl implements MissionService{
     @Override
     public void assignUserMission(JwtUserDTO userInfo, List<Integer> users, int mid) {
         int gid = groupService.getGidByMid(mid);
-        authService.checkIfGroupLeader(userInfo.getId(), gid);
+        authService.checkIfMissionLeader(userInfo.getId(), mid);
         for (int uid : users) {
             authService.checkIfGroupMember(uid, gid);
+            missionMapper.insertUsersMission(uid, mid);
         }
-        missionMapper.insertUsersMission(users, mid);
     }
 
     @Override
     public void deleteUserMission(JwtUserDTO userInfo, List<Integer> users, int mid) {
         int gid = groupService.getGidByMid(mid);
-        authService.checkIfGroupLeader(userInfo.getId(), gid);
-        missionMapper.deleteUserFromMission(users, mid);
+        authService.checkIfMissionLeader(userInfo.getId(), mid);
+        for (int uid : users) {
+            missionMapper.deleteUserFromMission(uid, mid);
+        }
+
     }
 }

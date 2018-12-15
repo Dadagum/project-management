@@ -8,7 +8,9 @@ public class ResourceQuery {
 
     private String name;
 
-    private String quantity;
+    private Integer quantity;
+
+    private String details;
 
     public Integer getPid() {
         return pid;
@@ -22,11 +24,15 @@ public class ResourceQuery {
 
     public void setName(String name) { this.name = name; }
 
-    public String getQuantity() { return quantity; }
+    public Integer getQuantity() { return quantity; }
 
-    public void setQuantity(String quantity) { this.quantity = quantity; }
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
 
     public Integer getRid() { return rid; }
 
     public void setRid(Integer rid) { this.rid = rid; }
+
+    public String getDetails() { return details; }
+
+    public void setDetails(String details) { this.details = details; }
 }

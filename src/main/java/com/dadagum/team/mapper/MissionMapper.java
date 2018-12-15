@@ -16,11 +16,11 @@ public interface MissionMapper {
 
     int getLeaderById(@Param("mid") int mid);
 
-    List<Mission> listUserMission(@Param("uid") int uid, @Param("query") MissionQuery query);
+    List<Mission> listUserMission(@Param("query") MissionQuery query);
 
     void updateMission(@Param("mission") Mission mission);
 
-    void insertUsersMission(@Param("users") List<Integer> users, @Param("mid") int mid);
+    void insertUsersMission(@Param("uid") Integer uid, @Param("mid") int mid);
 
-    void deleteUserFromMission(@Param("users") List<Integer> users, @Param("mid") int mid);
+    void deleteUserFromMission(@Param("uid") Integer uid, @Param("mid") int mid);
 }

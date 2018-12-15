@@ -18,12 +18,15 @@
         select * from mission where id=#{mid}
     </select>
 
-    <select id="getLeaderById">
+    <select id="getLeaderById" resultType="int">
         select uid from mission where id=#{mid}
     </select>
 
     <select id="listUserMission" resultType="com.dadagum.team.common.model.Mission">
-        select * from mission where id in (select mid from user_mission where user_mission.uid=#{uid})
+        select * from mission where 1=1
+        <if test="query.uid!=null and query.uid!=''">
+            add id in (select mid from user_mission where user_mission.uid=#{query.uid})
+        </if>
         <if test="query.gid!=null and query.gid !=''">
             and gid=#{query.gid}
         </if>
@@ -32,33 +35,41 @@
         </if>
     </select>
 
-    <update id="updateMission">
+    <update id="updateMission" parameterType="com.dadagum.team.common.model.Mission">
         update mission
         <set>
             <if test="mission.name!=null and mission.name!=''">
                 name=#{mission.name}
             </if>
+
             <if test="mission.details!=null and mission.details!=''">
                 details=#{mission.details}
             </if>
+
             <if test="mission.startTime!=null and mission.startTime!=''">
                 start_time=#{mission.startTime}
             </if>
+
             <if test="mission.endTime!=null and mission.endTime!=''">
                 send_time=#{mission.endTime}
             </if>
+
             <if test="mission.pid!=null and mission.pid!=''">
                 pid=#{mission.pid}
             </if>
+
             <if test="mission.gid!=null and mission.gid!=''">
                 gid=#{mission.gid}
             </if>
+
             <if test="mission.finished!=null and mission.finished!=''">
                 finished=#{mission.finished}
             </if>
+
             <if test="mission.overdued!=null and mission.overdued!=''">
                 overdued=#{mission.overdued}
             </if>
+
             <if test="mission.uid!=null and mission.uid!=''">
                 uid=#{mission.uid}
             </if>
@@ -66,17 +77,12 @@
         where id=#{mission.id}
     </update>
 
-    <insert id="insertUserMission">
+    <insert id="insertUsersMission">
         insert into user_mission(uid, mid) VALUES
-        <foreach collection="list" item="uid" separator=",">
-            (#{uid},#{mid})
-        </foreach>
+            (#{uid},#{mid});
     </insert>
 
     <delete id="deleteUserFromMission">
-        delete from user_mission where mid=#{mid} and uid in
-        <foreach collection="list" item="uid" separator=",">
-            #{uid}
-        </foreach>
+        delete from user_mission where mid=#{mid} and uid=#{uid}
     </delete>
 </mapper>

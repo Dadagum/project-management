@@ -38,6 +38,7 @@ public class CommonController {
     public ResponseEntity<JsonResult<?>> login(User user){
         String jwt = userService.login(user);
         JsonResult<?> result = new JsonResult<>(user, "登陆成功");
+        System.out.println("return user : " + user);
         return ResponseEntity.ok().header("Authorization", jwt).body(result);
     }
 

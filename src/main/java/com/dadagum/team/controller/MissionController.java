@@ -27,7 +27,7 @@ public class MissionController {
     }
 
     @PostMapping
-    @ApiOperation(value = "增加团队项目任务", notes = "必填字段: pid, name, details, startTime, endTime")
+    @ApiOperation(value = "增加团队项目任务", notes = "必填字段: gid, pid,uid, name, details, startTime, endTime,details")
     public ResponseEntity<JsonResult<?>> addMission(Mission mission, @RequestAttribute JwtUserDTO userInfo){
         mission=missionService.insertMission(userInfo, mission);
         return ResponseEntity.ok(new JsonResult<>(mission, "增加任务成功"));
@@ -48,22 +48,22 @@ public class MissionController {
     }
 
     @GetMapping
-    @ApiOperation(value = "得到团队项目中的任务列表", notes = "必填参数：待定")
+    @ApiOperation(value = "得到团队项目中的任务列表", notes = "选填参数：pid，gid，uid")
     public ResponseEntity<JsonResult<?>> listProjectMission(@RequestAttribute JwtUserDTO userInfo, MissionQuery query){
         List<Mission> result = missionService.listUserMission(userInfo, query);
         return ResponseEntity.ok(new JsonResult<>(result, "查看任务列表成功"));
     }
 
     @PutMapping("/{mid}")
-    @ApiOperation(value = "更新团队项目任务信息", notes = "选填参数：pid, name, details, startTime, endTime. url参数： 任务id")
+    @ApiOperation(value = "更新团队项目任务信息", notes = "选填参数：pid, name, details, startTime, endTime，finished. url参数： 任务id")
     public ResponseEntity<JsonResult<?>> updateMission(Mission mission, @PathVariable int mid, @RequestAttribute JwtUserDTO userInfo){
         mission.setId(mid);
-        mission.setPid(10000);
         missionService.updateMission(userInfo, mission);
         return ResponseEntity.ok(new JsonResult<>(mission, "创建任务成功"));
     }
 
     @PostMapping("/{mid}/users")
+    @ApiOperation(value = "分配项目成员任务", notes = "必填参数：参数uid，url参数： 任务mid")
     public ResponseEntity<JsonResult<?>> assignUserMission(@PathVariable int mid, @RequestBody Map<String, List<Integer>> map, @RequestAttribute JwtUserDTO userInfo){
         List<Integer> users = map.get("users");
         missionService.assignUserMission(userInfo, users, mid);
@@ -71,6 +71,7 @@ public class MissionController {
     }
 
     @DeleteMapping("/{mid}/users")
+    @ApiOperation(value = "踢出项目任务成员", notes = "必填参数：参数uid，url参数： 任务mid")
     public ResponseEntity<JsonResult<?>> deleteUserMission(@PathVariable int mid, @RequestBody Map<String, List<Integer>> map, @RequestAttribute JwtUserDTO userInfo){
         List<Integer> users = map.get("users");
         missionService.deleteUserMission(userInfo, users, mid);

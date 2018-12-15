@@ -6,6 +6,7 @@ import com.dadagum.team.common.model.ResourceRecord;
 import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.common.query.ResourceQuery;
 import com.dadagum.team.service.ResourceService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,14 @@ public class ResourceController {
     }
 
     @PostMapping
+    @ApiOperation(value = "增加项目资源", notes = "必填项目:name,quantity,pid,gid")
     public ResponseEntity<JsonResult<?>> addResource(@RequestAttribute JwtUserDTO userInfo, ProjectResource projectResource) {
         resourceService.insertResource(userInfo, projectResource);
         return ResponseEntity.ok(new JsonResult<>(null, "增加项目资源成功"));
     }
 
     @DeleteMapping("/{rid}")
+    @ApiOperation(value = "删除项目资源", notes = "URL参数rid")
     public ResponseEntity<JsonResult<?>> deleteResource(@RequestAttribute JwtUserDTO userInfo, @PathVariable int rid) {
         resourceService.deleteResource(userInfo, rid);
         return ResponseEntity.ok(new JsonResult<>(null, "删除项目资源成功"));
@@ -48,8 +51,8 @@ public class ResourceController {
     }
 
     @PutMapping
-    public ResponseEntity<JsonResult<?>> updateResource(@RequestAttribute JwtUserDTO userInfo, ResourceQuery query, int rid) {
-        query.setRid(rid);
+    @ApiOperation(value = "更新项目资源", notes = "必填参数rid，details，quantity,pid")
+    public ResponseEntity<JsonResult<?>> updateResource(@RequestAttribute JwtUserDTO userInfo, ResourceQuery query) {
         resourceService.updateResource(userInfo, query);
         return ResponseEntity.ok(new JsonResult<>(query, "更新资源成功"));
     }

@@ -62,7 +62,6 @@
     </insert>
 
     <delete id="deleteUserFromProject">
-        delete from user_project where pid=#{pid} and uid in
-            #{uid}
+        delete from user_project where pid=#{pid} and uid=#{uid}
     </delete>
 </mapper>

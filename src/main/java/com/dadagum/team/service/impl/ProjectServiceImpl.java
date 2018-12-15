@@ -72,8 +72,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void assignUserProject(JwtUserDTO userInfo, List<Integer> users, int pid) {
-        int gid = groupService.getGidByPid(pid);
-        authService.checkIfGroupLeader(userInfo.getId(), gid);
+        Integer gid = groupService.getGidByPid(pid);
+        authService.checkIfProjectLeader(userInfo.getId(), pid);
         for (int uid : users) {
             authService.checkIfGroupMember(uid, gid);
             projectMapper.insertUsersProject(uid, pid);
@@ -82,8 +82,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void deleteUserFromProject(JwtUserDTO userInfo, List<Integer> users, int pid) {
-        Integer gid = groupService.getGidByPid(pid);
-        authService.checkIfGroupLeader(userInfo.getId(), gid);
+        //Integer gid = groupService.getGidByPid(pid);
+        authService.checkIfProjectLeader(userInfo.getId(), pid);
         for(int uid:users){
             projectMapper.deleteUserFromProject(uid, pid);
         }

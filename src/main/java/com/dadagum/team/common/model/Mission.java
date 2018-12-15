@@ -94,7 +94,7 @@ public class Mission {
 
     public void setFinished(boolean finished) { this.finished = finished; }
 
-    public boolean isOverdue() { return overdued; }
+    public boolean isOverdued() { return overdued; }
 
-    public void setOverdue(boolean overdued) { this.overdued = overdued; }
+    public void setOverdued(boolean overdued) { this.overdued = overdued; }
 }

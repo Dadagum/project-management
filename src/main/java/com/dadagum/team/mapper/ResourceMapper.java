@@ -17,7 +17,7 @@ public interface ResourceMapper {
 
     List<ProjectResource> listResource(@Param("query")ResourceQuery query);
 
-    void updateResource(@Param("query")ResourceQuery query,@Param("rid")int rid);
+    void updateResource(@Param("record")ResourceRecord record,@Param("rid")int rid);
 
     void insertResourceRecord(@Param("record") ResourceRecord record);
 

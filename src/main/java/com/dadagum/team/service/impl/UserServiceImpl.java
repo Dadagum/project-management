@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     // jwt的有效时间，单位：毫秒
-    private static final int JWT_AGE = 3600000;
+    private static final int JWT_AGE = 7200000;
 
     @Override
     public void insertUser(User user) {
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String login(User user) {
         String salt = userMapper.getSalt(user.getUserName());
-
+        System.out.println("user:1+++++++++++++++++++++++" +user);
         // 用户不存在，但是为了不让外界知道用户名是否存在，所以返回的信息为“用户名或者密码错误”
         if (salt == null){
             throw new UserAuthenticationException("用户名或者密码错误");
@@ -80,7 +80,8 @@ public class UserServiceImpl implements UserService {
         if (!checkPassword(user)){
             throw new UserAuthenticationException("用户名或者密码错误");
         }
-        user= userMapper.getUserByName(user.getUserName());
+        user = userMapper.getUserByName(user.getUserName());
+        System.out.println("user:2+++++++++++++++++++++++" +user);
         // 生成jwt
         String role = userMapper.getUserRole(user.getId());
         JwtUserDTO jwtUserDTO = new JwtUserDTO(user.getId(), role);

@@ -25,20 +25,21 @@
     
     <update id="updateResource">
         update  project_resource
-          <set>
-              <if test="query.name!=null and query.name!=''">
-                  name=#{query.name}
-              </if>
-              <if test="query.quantity!=null and query.quantity!=''">
-                  quantity=quantity+#{query.quantity}
-              </if>
-          </set>
+          <!--<set>-->
+              <!--<if test="record.name!=null and record.name!=''">-->
+                  <!--name=#{record.name}-->
+              <!--</if>-->
+              <!--<if test="record.num!=null and record.num!=''">-->
+                  <!--quantity=quantity+#{record.num}-->
+              <!--</if>-->
+          <!--</set>-->
+        set quantity=quantity+#{record.num}
         where id=#{rid}
     </update>
 
-    <insert id="insertResourceRecord" useGeneratedKeys="true" keyProperty="id" parameterType="com.dadagum.team.common.model.ResourceRecord">
+    <insert id="insertResourceRecord" useGeneratedKeys="true" keyProperty="record.id" parameterType="com.dadagum.team.common.model.ResourceRecord">
         insert into resource_record(rid, details, num, time)
-        values (rid=#{record.rid},details=#{record.details},num=#{record.num},time=#{record.time})
+        values (#{record.rid},#{record.details},#{record.num},#{record.time})
     </insert>
 
     <select id="listResourceRecord" resultType="com.dadagum.team.common.model.ResourceRecord">
