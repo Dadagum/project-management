@@ -43,6 +43,7 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public void checkIfProjectMember(int uid, int pid) {
+        System.out.println("uid +++++++++++++ pid     "+uid+"   "+pid);
         GroupRoleEnum role =getUserProjectRole(uid,pid);
         if (role == GroupRoleEnum.STRANGER) {
             throw new PermissionDeniedException("您无权操作");

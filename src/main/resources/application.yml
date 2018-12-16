@@ -33,10 +33,13 @@ app:
 
 # mybatis配置
 mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml
+  #config-location: classpath:mybatis/mybatis.cfg.xml
   type-aliases-package: com.dadagum.team.common.model
   mapper-locations:
   - classpath:mybatis/mapper/**/*.xml
+  configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
 
 # servlet配置
 server:

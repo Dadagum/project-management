@@ -35,4 +35,15 @@ public class ResourceQuery {
     public String getDetails() { return details; }
 
     public void setDetails(String details) { this.details = details; }
+
+    @Override
+    public String toString() {
+        return "ResourceQuery{" +
+                "pid=" + pid +
+                ", rid=" + rid +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", details='" + details + '\'' +
+                '}';
+    }
 }

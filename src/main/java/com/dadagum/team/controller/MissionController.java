@@ -58,8 +58,9 @@ public class MissionController {
 
     @PutMapping("/{mid}")
     @ApiOperation(value = "更新团队项目任务信息", notes = "选填参数：pid, name, details, startTime, endTime，finished. url参数： 任务id")
-    public ResponseEntity<JsonResult<?>> updateMission(Mission mission, @PathVariable int mid, @RequestAttribute JwtUserDTO userInfo){
+    public ResponseEntity<JsonResult<?>> updateMission(@RequestBody Mission mission, @PathVariable int mid, @RequestAttribute JwtUserDTO userInfo){
         mission.setId(mid);
+        System.out.println(mission.getDetails()+"#################################");
         missionService.updateMission(userInfo, mission);
         return ResponseEntity.ok(new JsonResult<>(mission, "创建任务成功"));
     }

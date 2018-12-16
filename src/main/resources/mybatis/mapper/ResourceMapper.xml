@@ -19,7 +19,7 @@
     <select id="listResource" resultType="com.dadagum.team.common.model.ProjectResource">
         select * from project_resource where 1=1 
         <if test="query.pid!=null and query.pid!=''">
-            pid=#{query.pid}
+           and pid=#{query.pid}
         </if>
     </select>
     

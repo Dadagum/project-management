@@ -17,7 +17,7 @@
         select * from project where id=#{pid};
     </select>
 
-    <select id="getLeaderIdById" resultType="int">
+    <select id="getLeaderIdById" resultType="Integer">
         select uid from project where id=#{pid};
     </select>
 

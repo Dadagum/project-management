@@ -60,21 +60,14 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public List<ProjectResource> listResource(JwtUserDTO userInfo, ResourceQuery query) {
-        // resourceMapper.listResource(query);
-        List<ProjectResource> result = new ArrayList<>();
-        ProjectResource resource = new ProjectResource();
-        resource.setCreateTime(DateUtils.getDetialedCurrentTime());
-        resource.setId(10000);
-        resource.setName("钱");
-        resource.setQuantity(100000000);
-        resource.setPid(10000);
-        result.add(resource);
+        authService.checkIfProjectMember(userInfo.getId(),query.getPid());
+        List<ProjectResource> result = resourceMapper.listResource(query);
         return result;
     }
 
     @Override
-    public void updateResource(JwtUserDTO userInfo, ResourceQuery query) {
-        authService.checkIfGroupLeader(userInfo.getId(),query.getPid());
+    public ProjectResource updateResource(JwtUserDTO userInfo, ResourceQuery query) {
+        authService.checkIfProjectLeader(userInfo.getId(),query.getPid());
         ResourceRecord record=new ResourceRecord();
         record.setRid(query.getRid());
         record.setDetails(query.getDetails());
@@ -83,5 +76,7 @@ public class ResourceServiceImpl implements ResourceService {
         record.setTime(DateUtils.getDetialedCurrentTime());
         resourceMapper.updateResource(record,record.getRid());
         resourceMapper.insertResourceRecord(record);
+        ProjectResource result=resourceMapper.getResourceById(record.getRid());
+        return result;
     }
 }

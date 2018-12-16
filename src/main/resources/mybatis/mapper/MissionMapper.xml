@@ -38,36 +38,36 @@
     <update id="updateMission" parameterType="com.dadagum.team.common.model.Mission">
         update mission
         <set>
-            <if test="mission.name!=null and mission.name!=''">
-                name=#{mission.name}
+            <if test="mission.name != null and mission.name!= '' ">
+                name = #{mission.name},
             </if>
 
-            <if test="mission.details!=null and mission.details!=''">
-                details=#{mission.details}
+            <if test="mission.details!=null and mission.details!='' ">
+                details = #{mission.details},
             </if>
 
-            <if test="mission.startTime!=null and mission.startTime!=''">
-                start_time=#{mission.startTime}
+            <if test="mission.startTime!=null and mission.startTime!='' ">
+                start_time=#{mission.startTime},
             </if>
 
-            <if test="mission.endTime!=null and mission.endTime!=''">
-                send_time=#{mission.endTime}
+            <if test="mission.endTime!=null and mission.endTime!='' ">
+                send_time=#{mission.endTime},
             </if>
 
-            <if test="mission.pid!=null and mission.pid!=''">
-                pid=#{mission.pid}
+            <if test="mission.pid!=null and mission.pid!='' ">
+                pid=#{mission.pid},
             </if>
 
-            <if test="mission.gid!=null and mission.gid!=''">
-                gid=#{mission.gid}
+            <if test="mission.gid!=null and mission.gid!='' ">
+                gid=#{mission.gid},
             </if>
 
-            <if test="mission.finished!=null and mission.finished!=''">
-                finished=#{mission.finished}
+            <if test="mission.finished!=null and mission.finished!='' ">
+                finished=#{mission.finished},
             </if>
 
-            <if test="mission.overdued!=null and mission.overdued!=''">
-                overdued=#{mission.overdued}
+            <if test="mission.overdued!=null and mission.overdued!='' ">
+                overdued=#{mission.overdued},
             </if>
 
             <if test="mission.uid!=null and mission.uid!=''">

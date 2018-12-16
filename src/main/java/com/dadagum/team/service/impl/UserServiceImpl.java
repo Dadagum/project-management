@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     // jwt的有效时间，单位：毫秒
-    private static final int JWT_AGE = 7200000;
+    private static final int JWT_AGE = 72000000;
 
     @Override
     public void insertUser(User user) {
