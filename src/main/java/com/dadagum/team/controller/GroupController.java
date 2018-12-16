@@ -82,10 +82,13 @@ public class GroupController {
 
     @GetMapping("/{gid}/users")
     @ApiOperation(value = "得到团队中的队友列表", notes = "url参数：团队id")
-    @JsonView(User.PublicUserInfo.class)
+    //@JsonView(User.PublicUserInfo.class)
     public ResponseEntity<JsonResult<?>> listTeamMate(@PathVariable int gid, @RequestAttribute JwtUserDTO userInfo) {
         List<User> list = groupService.listUserTeammate(userInfo,gid);
-        System.out.println("???" + list);
+        for(User user:list){
+            user.setPassword(null);
+            user.setSalt(null);
+        }
         return ResponseEntity.ok().body(new JsonResult<>(list, "成功获得队友列表"));
     }
 }

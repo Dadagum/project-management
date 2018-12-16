@@ -3,6 +3,7 @@ package com.dadagum.team.controller;
 import com.dadagum.team.common.api.JsonResult;
 import com.dadagum.team.common.model.Project;
 import com.dadagum.team.common.dto.JwtUserDTO;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.query.ProjectQuery;
 import com.dadagum.team.service.ProjectService;
 import io.swagger.annotations.Api;
@@ -78,5 +79,10 @@ public class ProjectController {
         return ResponseEntity.ok().body(new JsonResult<>(null, "删除成员成功"));
     }
 
-
+    @GetMapping("/{pid}/users")
+    @ApiOperation(value="得到任务成员",notes="url参数 pid")
+    public ResponseEntity<JsonResult<?>> listUser(@PathVariable int pid,@RequestAttribute JwtUserDTO userInfo){
+        List<User> users=projectService.listUser(pid,userInfo);
+        return ResponseEntity.ok().body(new JsonResult<>(users, "获取成员列表成功"));
+    }
 }

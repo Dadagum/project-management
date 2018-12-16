@@ -97,4 +97,20 @@ public class Mission {
     public boolean isOverdued() { return overdued; }
 
     public void setOverdued(boolean overdued) { this.overdued = overdued; }
+
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", gid=" + gid +
+                ", uid=" + uid +
+                ", name='" + name + '\'' +
+                ", details='" + details + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", finished=" + finished +
+                ", overdued=" + overdued +
+                '}';
+    }
 }

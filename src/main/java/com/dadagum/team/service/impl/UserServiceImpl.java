@@ -80,7 +80,14 @@ public class UserServiceImpl implements UserService {
         if (!checkPassword(user)){
             throw new UserAuthenticationException("用户名或者密码错误");
         }
-        user = userMapper.getUserByName(user.getUserName());
+        User new_user=new User();
+        new_user=userMapper.getUserByName(user.getUserName());
+        user.setId(new_user.getId());
+        user.setCreateTime(new_user.getCreateTime());
+        user.setRole(new_user.getRole());
+        user.setUserName(new_user.getUserName());
+        user.setPhone(new_user.getPhone());
+
         System.out.println("user:2+++++++++++++++++++++++" +user);
         // 生成jwt
         String role = userMapper.getUserRole(user.getId());

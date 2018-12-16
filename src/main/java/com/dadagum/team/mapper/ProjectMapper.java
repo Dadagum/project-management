@@ -1,6 +1,7 @@
 package com.dadagum.team.mapper;
 
 import com.dadagum.team.common.model.Project;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.query.ProjectQuery;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +24,6 @@ public interface ProjectMapper {
     void insertUsersProject(@Param("uid") Integer uid, @Param("pid") int pid);//
 
     void deleteUserFromProject(@Param("uid") Integer uid, @Param("pid") int pid);//
+
+    List<User> listUser(@Param("pid") int pid);
 }

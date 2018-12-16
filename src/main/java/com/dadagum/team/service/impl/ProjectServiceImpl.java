@@ -3,6 +3,7 @@ package com.dadagum.team.service.impl;
 import com.dadagum.team.common.model.Project;
 import com.dadagum.team.common.dto.JwtUserDTO;
 import com.dadagum.team.common.exception.def.PermissionDeniedException;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.query.ProjectQuery;
 import com.dadagum.team.mapper.GroupMapper;
 import com.dadagum.team.mapper.ProjectMapper;
@@ -87,5 +88,16 @@ public class ProjectServiceImpl implements ProjectService {
         for(int uid:users){
             projectMapper.deleteUserFromProject(uid, pid);
         }
+    }
+
+    @Override
+    public List<User> listUser(int pid, JwtUserDTO userInfo){
+        authService.checkIfProjectMember(userInfo.getId(),pid);
+        List<User> result=projectMapper.listUser(pid);
+        for(User user:result){
+            user.setPassword(null);
+            user.setSalt(null);
+        }
+        return result;
     }
 }

@@ -5,6 +5,7 @@ import com.dadagum.team.common.interceptor.AuthorizationInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,16 +14,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowedOrigins("*")
-//                .allowedMethods("PUT", "DELETE")
-//                .allowedHeaders("*")
-//                .exposedHeaders("Authorization")
-//                .allowCredentials(false).maxAge(3600);
-//
-//    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE")
+                .allowedHeaders("Authorization")
+                .exposedHeaders("Authorization")
+                .allowCredentials(false).maxAge(3600);
+
+    }
 
     /**
      * 增加跨域支持(CORS方式)
@@ -36,12 +37,12 @@ public class WebConfig implements WebMvcConfigurer{
                 .addPathPatterns("/**")
                 .excludePathPatterns("/registration", "/authentication");
     }
-
-    @Bean
-    public FilterRegistrationBean corsFilter() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new CorsFilter());
-        return registration;
-    }
+//
+//    @Bean
+//    public FilterRegistrationBean corsFilter() {
+//        FilterRegistrationBean registration = new FilterRegistrationBean();
+//        registration.setFilter(new CorsFilter());
+//        return registration;
+//    }
 
 }

@@ -64,4 +64,8 @@
     <delete id="deleteUserFromProject">
         delete from user_project where pid=#{pid} and uid=#{uid}
     </delete>
+
+    <select id="listUser" resultType="com.dadagum.team.common.model.User">
+        select * from user where id in (select uid from user_project where pid=#{pid})
+    </select>
 </mapper>

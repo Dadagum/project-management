@@ -74,6 +74,7 @@ public class AuthServiceImpl implements AuthService{
     }
 
     private GroupRoleEnum getUserGroupRole(int uid, int gid) {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!gid:"+gid);
         Integer leaderId = groupMapper.getLeaderIdById(gid);
         if (leaderId == null) { // 说明不属于这个组
             return GroupRoleEnum.STRANGER;

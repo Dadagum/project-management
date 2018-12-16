@@ -16,8 +16,13 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+        if (request.getMethod().equals("OPTIONS")){
+            return true;
+        }
+
+        response.setContentType("application/json; charset=utf-8");
         request.setCharacterEncoding("utf-8");
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader("authorization");
         System.out.println("token : " + token);
         if (token == null) {
             returnErrorMessage("请先登录", HttpStatus.FORBIDDEN.value(), response);

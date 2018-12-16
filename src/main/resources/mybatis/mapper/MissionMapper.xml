@@ -25,7 +25,7 @@
     <select id="listUserMission" resultType="com.dadagum.team.common.model.Mission">
         select * from mission where 1=1
         <if test="query.uid!=null and query.uid!=''">
-            add id in (select mid from user_mission where user_mission.uid=#{query.uid})
+            and id in (select mid from user_mission where user_mission.uid=#{query.uid})
         </if>
         <if test="query.gid!=null and query.gid !=''">
             and gid=#{query.gid}
@@ -85,4 +85,8 @@
     <delete id="deleteUserFromMission">
         delete from user_mission where mid=#{mid} and uid=#{uid}
     </delete>
+
+    <select id="listUser" resultType="com.dadagum.team.common.model.User">
+        select * from user where id in(select uid from user_mission where mid=#{mid})
+    </select>
 </mapper>

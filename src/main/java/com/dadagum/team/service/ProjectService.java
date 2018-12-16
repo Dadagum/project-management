@@ -2,6 +2,7 @@ package com.dadagum.team.service;
 
 import com.dadagum.team.common.model.Project;
 import com.dadagum.team.common.dto.JwtUserDTO;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.query.ProjectQuery;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface ProjectService {
     void assignUserProject(JwtUserDTO userInfo, List<Integer> users, int pid);
 
     void deleteUserFromProject(JwtUserDTO userInfo, List<Integer> users, int pid);
+
+    List<User> listUser(int pid,JwtUserDTO userInfo);
 }

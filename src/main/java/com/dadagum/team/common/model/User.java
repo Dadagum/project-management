@@ -5,26 +5,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 
-@ApiModel(value="User",description="用户")
 public class User {
 
-    @ApiModelProperty(value="用户id",name="id")
     private Integer id;
-
-    @ApiModelProperty(value="用户名称(长度 1-20)",name="userName")
     private String userName;
-
-    @ApiModelProperty(value="用户密码(长度 5-30)",name="password")
     private String password;
-
-    @ApiModelProperty(value="用户手机",name="phone")
     private String phone;
-
-    @ApiModelProperty(value="用户在系统中扮演角色",name="role")
     private String role;
-
     private String salt;
-
     private String createTime;
 
     public User(String userName, String password, String phone, String role, String salt, String createTime) {
@@ -115,16 +103,16 @@ public class User {
         this.salt = salt;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", userName='" + userName + '\'' +
-//                ", password='" + password + '\'' +
-//                ", phone='" + phone + '\'' +
-//                ", role='" + role + '\'' +
-//                ", salt='" + salt + '\'' +
-//                ", createTime='" + createTime + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role='" + role + '\'' +
+                ", salt='" + salt + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
+    }
 }

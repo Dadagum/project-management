@@ -1,6 +1,7 @@
 package com.dadagum.team.mapper;
 
 import com.dadagum.team.common.model.Mission;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.query.MissionQuery;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +24,6 @@ public interface MissionMapper {
     void insertUsersMission(@Param("uid") Integer uid, @Param("mid") int mid);
 
     void deleteUserFromMission(@Param("uid") Integer uid, @Param("mid") int mid);
+
+    List<User> listUser(@Param("mid") int mid);
 }

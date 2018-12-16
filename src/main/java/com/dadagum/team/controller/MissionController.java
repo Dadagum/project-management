@@ -3,6 +3,7 @@ package com.dadagum.team.controller;
 import com.dadagum.team.common.api.JsonResult;
 import com.dadagum.team.common.model.Mission;
 import com.dadagum.team.common.dto.JwtUserDTO;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.query.MissionQuery;
 import com.dadagum.team.service.MissionService;
 import io.swagger.annotations.Api;
@@ -54,6 +55,7 @@ public class MissionController {
         return ResponseEntity.ok(new JsonResult<>(result, "查看任务列表成功"));
     }
 
+
     @PutMapping("/{mid}")
     @ApiOperation(value = "更新团队项目任务信息", notes = "选填参数：pid, name, details, startTime, endTime，finished. url参数： 任务id")
     public ResponseEntity<JsonResult<?>> updateMission(Mission mission, @PathVariable int mid, @RequestAttribute JwtUserDTO userInfo){
@@ -76,6 +78,13 @@ public class MissionController {
         List<Integer> users = map.get("users");
         missionService.deleteUserMission(userInfo, users, mid);
         return ResponseEntity.ok(new JsonResult<>(null, "删除用户分配任务"));
+    }
+
+    @GetMapping("/{mid}/users")
+    @ApiOperation(value="得到任务成员",notes="url参数 mid")
+    public ResponseEntity<JsonResult<?>> listUser(@PathVariable int mid,@RequestAttribute JwtUserDTO userInfo){
+        List<User> users=missionService.listUser(mid,userInfo);
+        return ResponseEntity.ok().body(new JsonResult<>(users, "获取成员列表成功"));
     }
 
 }

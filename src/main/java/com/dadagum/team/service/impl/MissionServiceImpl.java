@@ -3,6 +3,7 @@ package com.dadagum.team.service.impl;
 import com.dadagum.team.common.exception.def.PermissionDeniedException;
 import com.dadagum.team.common.model.Mission;
 import com.dadagum.team.common.dto.JwtUserDTO;
+import com.dadagum.team.common.model.User;
 import com.dadagum.team.common.query.MissionQuery;
 import com.dadagum.team.mapper.GroupMapper;
 import com.dadagum.team.mapper.MissionMapper;
@@ -34,7 +35,7 @@ public class MissionServiceImpl implements MissionService{
 
     @Override
     public Mission insertMission(JwtUserDTO userInfo, Mission mission) {
-        authService.checkIfGroupLeader(userInfo.getId(), mission.getPid());
+        authService.checkIfProjectLeader(userInfo.getId(), mission.getPid());
         missionMapper.insertMission(mission);
         missionMapper.insertUsersMission(mission.getUid(),mission.getId());
         return  mission;
@@ -63,6 +64,10 @@ public class MissionServiceImpl implements MissionService{
             authService.checkIfGroupMember(userInfo.getId(), gid);
         }
         List<Mission> result = missionMapper.listUserMission(query);
+//        for(Mission mission: result)
+//        {
+//            System.out.println(mission.toString());
+//        }
         return result;
     }
 
@@ -90,6 +95,16 @@ public class MissionServiceImpl implements MissionService{
         for (int uid : users) {
             missionMapper.deleteUserFromMission(uid, mid);
         }
+    }
 
+    @Override
+    public List<User> listUser(int mid, JwtUserDTO userInfo) {
+        authService.checkIfMissionMember(userInfo.getId(),mid);
+        List<User> result=missionMapper.listUser(mid);
+        for(User user:result){
+            user.setPassword(null);
+            user.setSalt(null);
+        }
+        return result;
     }
 }
